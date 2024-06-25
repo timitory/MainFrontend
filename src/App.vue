@@ -12,8 +12,8 @@
 import Loading from '@/components/Loading'
 import Success from '@/components/SuccessModal'
 import Error from '@/components/FailureModal'
-import axios from "axios";
-import baseURL from "@/main";
+// import axios from "axios";
+// import baseURL from "@/main";
 import {mapState} from "vuex";
 export default {
   components:{
