@@ -31,7 +31,6 @@ jobs:
           git rm -r email
           git rm -r public
           git rm -r src
-          git rm .DS_Store
           git rm .browserslistrc
           git rm .eslintrc.js
           git rm .gitignore
