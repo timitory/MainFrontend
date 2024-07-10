@@ -46,17 +46,17 @@
                     </a>
                   </div>
                 </div>
-<!--                <p class="text-sm text-army cursor-pointer" @click="showDetails.Gold = false"-->
-<!--                   v-if="showDetails.Gold">Collapse</p>-->
-<!--                <p class="text-sm text-army cursor-pointer" @click="showDetails.Gold = true" v-else>Details</p>-->
-<!--                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"-->
-<!--                        style="background-color: #00A859" @click="plan('sapphire')">-->
-<!--                  Buy-->
-<!--                </button>-->
-                <p class="text-sm text-army cursor-pointer" >Details</p>
-                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded bg-grey">
-                  coming soon
+                <p class="text-sm text-army cursor-pointer" @click="showDetails.Gold = false"
+                   v-if="showDetails.Gold">Collapse</p>
+                <p class="text-sm text-army cursor-pointer" @click="showDetails.Gold = true" v-else>Details</p>
+                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"
+                        style="background-color: #00A859" @click="plan('sapphire')">
+                  Buy
                 </button>
+<!--                <p class="text-sm text-army cursor-pointer" >Details</p>-->
+<!--                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded bg-grey">-->
+<!--                  coming soon-->
+<!--                </button>-->
               </div>
             </div>
           </div>
@@ -142,7 +142,7 @@
           </div>
         </div>
       </div>
-      <HealthModal v-if="show" :plans="plans" v-on:show="show = false;" v-on:Submit="buyHMO" v-on:Term = "showTermsModal = true; show = false"  :data="data"/>
+      <HealthModal v-if="planType" :plans="plans" v-on:show="$store.commit('setPlansTypes', false)" v-on:Submit="buyHMO" v-on:Term = "showTermsModal = true; show = false"  :data="data"/>
       <div v-show="showPaystack">
         <Paystack
             ref="paystackbutton"
@@ -181,6 +181,7 @@ import SuccessModal from "@/views/Products/Modals/Success.vue";
 import ArrowUp from "@/assets/icons/arrowup.vue";
 import TermsModal from "@/components/TermsModal.vue";
 import Complete from "@/views/Products/Modals/Complete.vue";
+import {mapState} from "vuex";
 
 export default {
   components: {
@@ -200,7 +201,6 @@ export default {
       show: false,
       showSecurity: false,
       mobileshow: false,
-      plans: [],
       securityNotification: false,
       paystackData: {
         public_key: '',
@@ -246,6 +246,12 @@ export default {
 
     }
   },
+  computed: {
+    ...mapState({
+      plans: state => state.plans,
+      planType: state => state.planType
+    }),
+  },
   mounted() {
     this.Category()
     window.addEventListener('scroll', this.handleScroll, true);
@@ -283,7 +289,7 @@ export default {
           })
     },
     async plan(type) {
-      this.show = true
+      this.$store.commit('setPlansTypes', true)
       await axios({url: `${baseURL}/hmo/plans`, method: 'GET'})
           .then(res => {
             console.log(res.data.data);
@@ -291,7 +297,8 @@ export default {
             const filteredObjects = plan.filter(obj =>
                 obj.Name.toLowerCase().includes(type)
             );
-            this.plans = filteredObjects;
+            this.$store.commit('setPlans', filteredObjects)
+            // this.plans = filteredObjects;
             console.log(filteredObjects);
           })
           .catch(err => {

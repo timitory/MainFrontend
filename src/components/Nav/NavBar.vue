@@ -21,11 +21,13 @@
                 <li>
                     <router-link to="/careers" class="text-sm text-current hover:text-army pb-3">Careers</router-link>
                 </li>
+                <li>
+                  <a target="_blank" href="https://documenter.getpostman.com/view/20277121/2sA3XQg1qB" class="text-sm text-current hover:text-army">Documentation</a>
+                </li>
                 <li class="cursor-pointer relative">
                   <a href="mailto: info@paddycover.com" class="text-sm text-current hover:text-army">Speak to Us</a>
 
                 </li>
-
             </ul>
             <div class="relative">
               <router-link to="/login" class="">

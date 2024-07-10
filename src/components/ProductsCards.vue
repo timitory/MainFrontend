@@ -34,9 +34,9 @@
 <!--          </div>-->
           <div >
             <router-link to="/app/dashboard/managevehicle" class="block mt-10 text-green-500 font-bold border border-solid border-gray-200 rounded px-4 py-2">Manage Policy</router-link>
-            <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>
+<!--            <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>-->
 
-<!--            <router-link to="/app/dashboard/buyvehicle/1" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>-->
+            <router-link to="/app/dashboard/buyvehicle/1" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>
           </div>
         </div>
       </li>

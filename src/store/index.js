@@ -49,7 +49,9 @@ export default new Vuex.Store({
     reviewmodal: false,
     userdata: {},
     autocheck: {},
-    virtualAccount: {}
+    virtualAccount: {},
+    plans:[],
+    planType: false,
   },
   mutations: {
     startLoading(state){
@@ -64,8 +66,14 @@ export default new Vuex.Store({
     startPlateVehicleForm(state, payload){
       state.plateVehicleForm  = payload;
     },
+    setPlansTypes(state, payload){
+      state.planType  = payload;
+    },
     setCoverType(state, payload){
       state.coverType  = payload;
+    },
+    setPlans(state, payload){
+      state.plans  = payload;
     },
     setBotActivation(state, payload){
       state.botActivation  = payload;

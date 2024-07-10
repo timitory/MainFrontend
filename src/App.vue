@@ -14,7 +14,7 @@ import Success from '@/components/SuccessModal'
 import Error from '@/components/FailureModal'
 // import axios from "axios";
 // import baseURL from "@/main";
-import {mapState} from "vuex";
+// import {mapState} from "vuex";
 export default {
   components:{
     Loading, Success, Error
@@ -29,7 +29,7 @@ export default {
   },
   mounted() {
     this.$store.commit('endLoading')
-    this.$store.commit('setBotActivation', false)
+    // this.$store.commit('setBotActivation', false)
     // const script = document.createElement('script');
     // script.src = 'https://cdn.botpress.cloud/webchat/v1/inject.js';
     // script.async = true;
@@ -74,6 +74,12 @@ export default {
     //             }
     //           if (x === 'Select Policy Type') {
     //             this.policyType = true
+    //           }
+    //           console.log(this.containsPaddy(x))
+    //           if (this.containsPaddy(x)) {
+    //             let paddy = this.handleText(x)
+    //             this.healthPlan(paddy)
+    //             console.log(paddy)
     //           }
     //           console.log(x)
     //         }
@@ -124,68 +130,100 @@ export default {
     // };
     // document.head.appendChild(script);
   },
-  beforeDestroy() {
-    // Clean up event listeners when the component is destroyed
-    // window.removeEventListener('message', this.handleMessageEvent);
-    // console.log('Event listener removed.');
-  },
-  methods: {
-    // handleText(sentence) {
-    //   let regex = /Paddy\s+(\S+)/; // Match "Paddy" followed by one or more spaces, then capture the next non-space characters
-    //   let match = sentence.match(regex);
-    //
-    //   if (match) {
-    //     let immediateText = match[1]; // The captured group (1-indexed) contains the immediate text after "Paddy"
-    //     console.log(immediateText);
-    //   }
-    // },
-    // handleMessageEvent(event) {
-    //   // console.log('Message event received:', event);
-    //
-    //   // Ensure the event is from the Botpress WebChat widget
-    //   if (event.data && event.data.payload && event.data.payload.text) {
-    //     const message = event.data.payload.text;
-    //     console.log('Received message:', message);
-    //   } else {
-    //     // console.log('Event does not contain expected data:', event.data);
-    //   }
-    // },
-    //
-    // async autoCheck(plateNumber) {
-    //   const targetRoute = '/vehicle';
-    //   if (this.$route.path !== targetRoute) {
-    //     this.$router.push(targetRoute);
-    //   } else {
-    //     console.log('Already on the /vehicle route');
-    //   }
-    //   this.$store.commit('startLoading')
-    //   await axios({url: `${baseURL}/vehicle/details/${plateNumber}`, method: 'GET'})
-    //       .then(res => {
-    //         console.log(res);
-    //         this.$store.commit('setAutoCheckData', res.data.data)
-    //         // this.$emit('show')
-    //         this.$store.commit('startPlateVehicleForm', true)
-    //         this.$store.commit('endLoading')
-    //
-    //       })
-    //       .catch(err => {
-    //         this.$store.dispatch('handleError', err)
-    //         this.$store.commit('endLoading')
-    //       })
-    //   this.$store.commit('endLoading')
-    //
-    // }
-  },
-  computed: {
-    ...mapState({
-      plateVehicleForm: state => state.plateVehicleForm
-    }),
-  },
-  watch: {
-    messages(newMessages) {
-      console.log('Messages updated:', newMessages);
-    }
-  }
+  // beforeDestroy() {
+  //   // Clean up event listeners when the component is destroyed
+  //   window.removeEventListener('message', this.handleMessageEvent);
+  //   console.log('Event listener removed.');
+  // },
+  // methods: {
+  //   handleText(sentence) {
+  //     let regex = /Paddy\s+(\S+)/; // Match "Paddy" followed by one or more spaces, then capture the next non-space characters
+  //     let match = sentence.match(regex);
+  //     let immediateText
+  //     if (match) {
+  //       immediateText = match[1]; // The captured group (1-indexed) contains the immediate text after "Paddy"
+  //       console.log(immediateText);
+  //     }
+  //     return immediateText;
+  //   },
+  //   containsPaddy(sentence) {
+  //       return sentence.toLowerCase().includes("thank you for choosing paddy");
+  //     },
+  //   handleMessageEvent(event) {
+  //     // console.log('Message event received:', event);
+  //
+  //     // Ensure the event is from the Botpress WebChat widget
+  //     if (event.data && event.data.payload && event.data.payload.text) {
+  //       const message = event.data.payload.text;
+  //       console.log('Received message:', message);
+  //     } else {
+  //       // console.log('Event does not contain expected data:', event.data);
+  //     }
+  //   },
+  //   async healthPlan(type) {
+  //     const targetRoute = '/health';
+  //     if (this.$route.path !== targetRoute) {
+  //       this.$router.push(targetRoute);
+  //     } else {
+  //       console.log('Already on the /health route');
+  //     }
+  //     this.$store.commit('setPlansTypes', true)
+  //
+  //     // this.$store.commit('startLoading')
+  //     await axios({url: `${baseURL}/hmo/plans`, method: 'GET'})
+  //         .then(res => {
+  //           console.log(res.data.data);
+  //           let plan = res.data.data
+  //           const filteredObjects = plan.filter(obj =>
+  //               obj.Name.toLowerCase().includes(type)
+  //           );
+  //           this.$store.commit('setPlans', filteredObjects)
+  //           // this.$emit('show')
+  //           // this.$store.commit('startPlateVehicleForm', true)
+  //           // this.$store.commit('endLoading')
+  //
+  //         })
+  //         .catch(err => {
+  //           this.$store.dispatch('handleError', err)
+  //           this.$store.commit('endLoading')
+  //         })
+  //     this.$store.commit('endLoading')
+  //   },
+  //   async autoCheck(plateNumber) {
+  //     const targetRoute = '/vehicle';
+  //     if (this.$route.path !== targetRoute) {
+  //       this.$router.push(targetRoute);
+  //     } else {
+  //       console.log('Already on the /vehicle route');
+  //     }
+  //     this.$store.commit('startLoading')
+  //     await axios({url: `${baseURL}/vehicle/details/${plateNumber}`, method: 'GET'})
+  //         .then(res => {
+  //           console.log(res);
+  //           this.$store.commit('setAutoCheckData', res.data.data)
+  //           // this.$emit('show')
+  //           this.$store.commit('startPlateVehicleForm', true)
+  //           this.$store.commit('endLoading')
+  //
+  //         })
+  //         .catch(err => {
+  //           this.$store.dispatch('handleError', err)
+  //           this.$store.commit('endLoading')
+  //         })
+  //     this.$store.commit('endLoading')
+  //
+  //   }
+  // },
+  // computed: {
+  //   ...mapState({
+  //     plateVehicleForm: state => state.plateVehicleForm
+  //   }),
+  // },
+  // watch: {
+  //   messages(newMessages) {
+  //     console.log('Messages updated:', newMessages);
+  //   }
+  // }
 }
 </script>
 <style lang="scss">
