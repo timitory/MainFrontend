@@ -36,17 +36,17 @@
                     <li class="text-sm">Sum Assured Limit: ₦400,000</li>
                   </ul>
                 </div>
-<!--                <p class="text-sm text-army cursor-pointer" @click="showDetails.Bronze = false"-->
-<!--                   v-if="showDetails.Bronze">Collapse</p>-->
-<!--                <p class="text-sm text-army cursor-pointer" @click="showDetails.Bronze = true" v-else>Details</p>-->
-<!--                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"-->
-<!--                        style="background-color: #00A859" @click="show = true; petCategory = 1;">-->
-<!--                  Buy-->
-<!--                </button>-->
-                <p class="text-sm text-army cursor-pointer" >Details</p>
-                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded bg-grey">
-                  coming soon
+                <p class="text-sm text-army cursor-pointer" @click="showDetails.Bronze = false"
+                   v-if="showDetails.Bronze">Collapse</p>
+                <p class="text-sm text-army cursor-pointer" @click="showDetails.Bronze = true" v-else>Details</p>
+                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"
+                        style="background-color: #00A859" @click="show = true; petCategory = 1;">
+                  Buy
                 </button>
+<!--                <p class="text-sm text-army cursor-pointer" >Details</p>-->
+<!--                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded bg-grey">-->
+<!--                  coming soon-->
+<!--                </button>-->
               </div>
             </div>
           </div>
@@ -68,17 +68,17 @@
                     <li class="text-sm">Sum Assured Limit: ₦800,000</li>
                   </ul>
                 </div>
-<!--                <p class="text-sm text-army cursor-pointer" @click="showDetails.Silver = false"-->
-<!--                   v-if="showDetails.Silver">Collapse</p>-->
-<!--                <p class="text-sm text-army cursor-pointer" @click="showDetails.Silver = true" v-else>Details</p>-->
-<!--                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"-->
-<!--                        style="background-color: #00A859"  @click="show = true; petCategory = 2; ">-->
-<!--                  Buy-->
-<!--                </button>-->
-                <p class="text-sm text-army cursor-pointer" >Details</p>
-                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded bg-grey">
-                  coming soon
+                <p class="text-sm text-army cursor-pointer" @click="showDetails.Silver = false"
+                   v-if="showDetails.Silver">Collapse</p>
+                <p class="text-sm text-army cursor-pointer" @click="showDetails.Silver = true" v-else>Details</p>
+                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"
+                        style="background-color: #00A859"  @click="show = true; petCategory = 2; ">
+                  Buy
                 </button>
+<!--                <p class="text-sm text-army cursor-pointer" >Details</p>-->
+<!--                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded bg-grey">-->
+<!--                  coming soon-->
+<!--                </button>-->
               </div>
             </div>
           </div>

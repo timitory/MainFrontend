@@ -14,9 +14,9 @@
           <img src="../assets/images/menu/healthcard.svg" alt="" class="mt-4 mx-auto w-3/5 lg:w-full img" >
           <p class="mb-6 mt-4">{{healthtext | slicer}} <span class="block text-blue-500 underline cursor-pointer" @click="showModal(1)">read more</span></p>
           <router-link to="/app/dashboard/managehealth" class=" block mt-10 text-green-500 font-bold border border-solid border-gray-200 rounded px-4 py-2">Manage Policy</router-link>
-          <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>
+<!--          <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>-->
 
-<!--          <router-link to="/app/dashboard/buyhealth/1" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>-->
+          <router-link to="/app/dashboard/buyhealth/1" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>
         </div>
       </li>
       <li class="rounded tile">
@@ -46,8 +46,8 @@
           <img src="../assets/images/menu/homcontentcard.svg" alt="" class="mt-4 mx-auto w-3/5 lg:w-full img" >
           <p class="mb-6 mt-4">{{hometext | slicer}} <span class="block text-blue-500 underline cursor-pointer" @click="showModal(3)">read more</span></p>
           <router-link to="/app/dashboard/managehome" class=" block mt-10 text-green-500 font-bold border border-solid border-gray-200 rounded px-4 py-2">Manage Policy</router-link>
-<!--          <router-link to="/app/dashboard/buyhome/1" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>-->
-          <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>
+          <router-link to="/app/dashboard/buyhome/1" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>
+<!--          <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>-->
 
         </div>
       </li>
@@ -58,8 +58,8 @@
           <p class="mb-6 mt-4">{{gadgettext | slicer}} <span class="block text-blue-500 underline cursor-pointer" @click="showModal(4)">read more</span></p>
           <div class="relative" >
             <router-link to="/gadget/managegadget" class="block mt-10 text-green-500 font-bold border border-solid border-gray-200 rounded px-4 py-2">Manage Policy</router-link>
-<!--          <router-link to="/gadget/buygadget" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>-->
-            <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>
+          <router-link to="/gadget/buygadget" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>
+<!--            <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>-->
 
             <!-- <p class=" block mt-10 text-green-500 opacity-30 font-bold border border-solid border-gray-200 rounded px-4 py-2">Manage Policy</p>
             <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p> -->
@@ -74,8 +74,8 @@
           <div class="relative" >
             
             <router-link to="/app/dashboard/managetravel" class=" block mt-10 text-green-500 font-bold border border-solid border-gray-200 rounded px-4 py-2">Manage Policy</router-link>
-<!--            <router-link to="/app/dashboard/buytravel/1" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>-->
-            <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>
+            <router-link to="/app/dashboard/buytravel/1" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>
+<!--            <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>-->
 
             <!-- <p class=" block mt-10 text-green-500 opacity-30 font-bold border border-solid border-gray-200 rounded px-4 py-2">Manage Policy</p>
               <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p> -->
@@ -95,8 +95,8 @@
           <!-- <p class=" block mt-10 text-green-500 opacity-30 font-bold border border-solid border-gray-200 rounded px-4 py-2">Manage Policy</p>
           <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p> -->
           <router-link to="/pet/managepet" class="block mt-10 text-green-500 font-bold border border-solid border-gray-200 rounded px-4 py-2">Manage Policy</router-link>
-<!--          <router-link to="/pet/buypet" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>-->
-            <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>
+          <router-link to="/pet/buypet" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>
+<!--            <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>-->
 
           </div>
         </div>
@@ -113,8 +113,8 @@
             <!-- <router-link to="/app/dashboard/managetravel" class=" block mt-13 mb-3 text-green-500 font-bold   px-4 py-2"></router-link> -->
           <!-- <router-link to="/app/dashboard/buytravel/1" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link> -->
           <p class=" block mt-10 text-green-500 opacity-30 font-bold border border-solid border-gray-200 rounded px-4 py-2">Manage Policy</p>
-          <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>
-          <!-- <router-link to="/customercover/buycover" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link> -->
+<!--          <p class="block mt-4 bg-green-500 opacity-30 font-bold text-white rounded px-4 py-2 ">Coming Soon</p>-->
+           <router-link to="/customercover/buycover" class="block mt-4 bg-green-500 font-bold text-white rounded px-4 py-2 ">Buy</router-link>
           </div>
         </div>
       </li>
@@ -128,10 +128,10 @@
   </div>
  
     <p class="mt-6 lg:mt-8 text-sm lg:text-center">It’s important to note that you can purchase more than one policy and you can also add a dependent to any or multiple of these policies</p>
-    <AboutHealth v-if="activeModal == 1" v-on:close="closeActiveModal"/>
-    <AboutVehicle v-if="activeModal == 2" v-on:close="closeActiveModal"/>
-    <AboutHome v-if="activeModal == 3" v-on:close="closeActiveModal"/>
-    <AboutGadget v-if="activeModal == 4" v-on:close="closeActiveModal"/>
+    <AboutHealth v-if="activeModal === 1" v-on:close="closeActiveModal"/>
+    <AboutVehicle v-if="activeModal === 2" v-on:close="closeActiveModal"/>
+    <AboutHome v-if="activeModal === 3" v-on:close="closeActiveModal"/>
+    <AboutGadget v-if="activeModal === 4" v-on:close="closeActiveModal"/>
   
   </div>
 </template>

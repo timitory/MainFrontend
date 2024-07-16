@@ -76,12 +76,12 @@
                 </div>
                 <p class="text-sm text-army cursor-pointer" @click="showDetails.Bronze = false"
                    v-if="showDetails.Bronze">Collapse</p>
-                <!--                <p class="text-sm text-army cursor-pointer" @click="showDetails.Bronze = true" v-else>Details</p>-->
-                <!--                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"-->
-                <!--                        style="background-color: #00A859" @click="show = true">-->
-                <!--                  Buy-->
-                <!--                </button>-->
-                <p class="text-sm text-army cursor-pointer" >Details</p>
+                <p class="text-sm text-army cursor-pointer" @click="showDetails.Bronze = true" v-else>Details</p>
+<!--                <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"-->
+<!--                        style="background-color: #00A859" @click="show = true">-->
+<!--                  Buy-->
+<!--                </button>-->
+<!--                <p class="text-sm text-army cursor-pointer" >Details</p>-->
                 <button class="py-2 px-12 text-white font-bold border-2 border-white rounded bg-grey">
                   coming soon
                 </button>
