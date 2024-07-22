@@ -7,7 +7,7 @@
                     <option value="Mr">Mr</option>
                     <option value="Mrs">Miss</option>
                     <option value="Mrs">Mrs</option>
-                   
+
                 </select>
                 <!-- <input v-model="surname" type="text" class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" placeholder="" required> -->
             </div>
@@ -31,11 +31,11 @@
             <div class="">
                 <label class="text-sm font-bold">Country</label>
                 <input v-model="country" type="text" class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" placeholder="">
-                
+
             </div>
             <!-- <div class="">
                 <label class="text-sm font-bold">State</label>
-                
+
                 <select v-model="state" class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" required>
                     <option v-for="(state, index) in states" :key="index" :value="state.StateID">{{state.Name}}</option>
                     </select>
@@ -43,12 +43,12 @@
             <div class="">
                 <label class="text-sm font-bold">Address</label>
                 <input v-model="address" type="text" class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" placeholder="">
-               
+
             </div>
             <div class="">
                 <label class="text-sm font-bold">Nationality</label>
                 <input v-model="nationality" type="text" class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" placeholder="">
-               
+
             </div>
             <div class="lg:w-full lg:mr-3">
                 <label class="text-sm font-bold">Select Gender</label>
@@ -62,12 +62,12 @@
             <div class="">
                 <label class="text-sm font-bold">Occupation</label>
                 <input v-model="occupation" type="text" class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" placeholder="">
-               
+
             </div>
             <div class="">
                 <label class="text-sm font-bold">Religion</label>
                 <input v-model="religion" type="text" class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" placeholder="">
-               
+
             </div>
             <div class="">
                 <label class="text-sm font-bold">Blood Group</label>
@@ -78,7 +78,7 @@
                     <option value="O">O</option>
                 </select>
                 <!-- <input v-model="blood_group" type="text" class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" placeholder=""> -->
-               
+
             </div>
             <div class="">
                 <label class="text-sm font-bold">Genotype</label>
@@ -91,7 +91,7 @@
                     <option value="SS">SS</option>
                 </select>
                 <!-- <input v-model="genotype" type="text" class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" placeholder=""> -->
-               
+
             </div>
             <div class="">
                 <label class="text-sm font-bold">Marital Status</label>
@@ -275,10 +275,10 @@ export default {
             let parts = this.date_of_birth.split('-');
             let formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
 
-            
+
             if(this.idImage == '') return this.error.idImage  = true
             if(Object.values(this.error).includes(true)) return
-            
+
             let data = {
                 title: this.title,
                 enrollee_id: this.beneficiary.user_id,
@@ -307,7 +307,7 @@ export default {
                 medical_history: this.preexistingmedicalhistory,
                 hospital_id: this.hospital_id.toString(),
             }
-            
+
             this.$emit('buyPolicy', data)
 
         },
@@ -322,7 +322,7 @@ export default {
             }
             return result;
         },
-      
+
         getChiHMOStates(){
             axios.get(`${baseURL}/hmo/states`)
             .then(res=> {
@@ -332,10 +332,10 @@ export default {
             .catch(err=>{
                 this.$store.dispatch('handleError', err)
             })
-            
+
 
         },
-     
+
         getHospital(planID, stateID, lgaID){
            console.log(this.date_of_birth)
             axios({url:`${baseURL}/hmo/hospitals`,data: {
@@ -355,15 +355,15 @@ export default {
             })
         },
         getLga(stateID){
-          
+
             console.log(stateID)
             axios({url:`${baseURL}/hmo/lga`,data: {
                 state_id: stateID
             } , method: 'POST'})
             .then((res)=> {
-                
+
                 this.lgas = res.data.data
-                
+
             })
             .catch((err)=> {
                 console.log(err)
@@ -371,15 +371,15 @@ export default {
             })
         },
         getLgaOrigin(stateID){
-          
+
           console.log(stateID)
           axios({url:`${baseURL}/hmo/lga`,data: {
               state_id: stateID
           } , method: 'POST'})
           .then((res)=> {
-              
+
               this.lgaOrigin = res.data.data
-              
+
           })
           .catch((err)=> {
               console.log(err)
@@ -387,7 +387,7 @@ export default {
           })
       },
         idUpload(){
-            this.photoFile = this.$refs.idImage.files[0].name 
+            this.photoFile = this.$refs.idImage.files[0].name
             this.error.idImage = false
             let fileToLoad = this.$refs.idImage.files[0];
             let fileReader = new FileReader();
@@ -434,16 +434,16 @@ export default {
         lga_id(){
             if(this.lga_id){
                 this.getHospital(this.health_plan.toString(), this.state_of_residence_id.toString(), this.lga_id.toString(),)
-                
+
             }
         }
     },
     mounted(){
-   
-    
-        if(Object.values(this.resources).length === 0){
-            this.getChiHealthResources()
-        }
+
+
+        // if(Object.values(this.resources).length === 0){
+        //     this.getChiHealthResources()
+        // }
         this.getChiHMOStates()
         this.email = this.beneficiary.email
         this.firstname = this.beneficiary.firstname
@@ -455,8 +455,8 @@ export default {
         this.underwriter_id = this.underwriter
         this.enrollee_id = this.beneficiary.user_id
 
-       
-            
+
+
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1; //January is 0!
@@ -468,11 +468,11 @@ export default {
 
         if (mm < 10) {
         mm = '0' + mm;
-        } 
-          
+        }
+
         today = yyyy + '-' + mm + '-' + dd;
 
-            
+
         var datefield = document.getElementById("dob");
 
 
