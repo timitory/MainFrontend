@@ -1,7 +1,13 @@
 name: Deploy
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [deploy]
+  pull_request:
+    branches: [deploy]
+
+permissions:
+  contents: write
 
 jobs:
   build:
