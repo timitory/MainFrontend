@@ -2,17 +2,17 @@
   <div class="l-modal" >
     <div class="loading-modal w-full">
       <div class="loader bg-white w-11/12 lg:w-10/12 mx-auto rounded p-5 lg:px-8 pb-6">
-        <form class=" items-center justify-center flex" @submit.prevent="validate">
-          <div>
+        <form class=" items-center justify-center flex w-full" @submit.prevent="validate">
+          <div class="w-full">
             <h1 class="text-customgreen font-bold lg:text-lg">Complete the Form </h1>
-            <div class="flex justify-between gap-6 py-1">
+            <div class="flex justify-between gap-6 py-1" v-if="$props.coverType !== 'Third Party'">
               <div class="block w-full">
                 <label for="name" class="block font-bold text-black py-2 text-xs lg:text-sm">Driver’s Licence no.</label>
                 <input v-model="data.driver_license_number" type="text" name="name" class="bg-custom border border-custom rounded w-full px-3 py-2 text-xs lg:text-md" >
                 <p class="text-red-500 text-sm" v-if="error.driver_license_number">Please enter a valid Driver license number</p>
                 <p class="text-red-500 text-xs" v-if="!error.driver_license_number">{{ fieldErrors['driver_license_number'] }}</p>
               </div>
-              <div class="block w-full">
+              <div class="block w-full" >
                 <label for="surname" class="block font-bold text-black py-2 text-xs lg:text-sm">BVN</label>
                 <input v-model="data.bvn" type="number" name="name"  class="bg-custom border border-custom rounded w-full px-3 py-2 text-xs lg:text-md" >
                 <p class="text-red-500 text-sm" v-if="error.bvn">Please enter a valid BVN</p>
@@ -85,7 +85,7 @@
               </div>
             </div>
             <div class="flex lg:flex-row flex-col justify-between gap-6 py-1">
-              <div class="block w-full">
+              <div class="block w-full" v-if="$props.coverType !== 'Third Party'">
                 <label for="lastname" class="block font-bold text-black py-2 text-xs lg:text-sm">Upload Picture of Plate No.</label>
                 <div class="rounded border border-custom flex">
                   <input hidden type="file" id="idmeans" class="bg-customgreen py-3 border-0 text-white"  ref="idmeans" @change="idUpload">
@@ -139,7 +139,7 @@ export default {
       data: {
         "reference": "",
         "user_vehicle_id": "",
-        "driver_license_number": "",
+        // "driver_license_number": "",
         "date_of_birth": "",
         "state_id": "",
         "lga_id": "",
@@ -147,8 +147,8 @@ export default {
         "idmeans_id": "",
         "id_number": "",
         "validid_image": "",
-        "regno_image": "",
-        "bvn": "",
+        // "regno_image": "",
+        // "bvn": "",
         "reg_state_id": "",
         "year": ""
       },
@@ -180,6 +180,10 @@ export default {
     paystack: {
       type: Object,
       required: true,
+    },
+    coverType: {
+      type: String,
+      required: true
     }
   },
   methods: {

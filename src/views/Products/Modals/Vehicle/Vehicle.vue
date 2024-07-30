@@ -220,7 +220,7 @@ export default {
         vehicle_category_id: null,
         vehicle_category:[],
         vehicle_color: "",
-        vehicle_value: 0,
+        // vehicle_value: 0,
         plate_number: "",
         payment_frequency_id: null,
         chasis_no: ""

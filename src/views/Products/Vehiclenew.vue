@@ -146,7 +146,7 @@
         </transition>
         <successModal v-if="success" type="Vehicle" v-on:continue="success = false; updateform = true" />
         <Complete type="Vehicle" v-if="complete" />
-        <UpdateForm v-if="updateform" plans="" :quoteDetails="quoteDetails" :paystack="paystackData" v-on:updatePolicy="updatePolicy" />
+        <UpdateForm v-if="updateform" plans="" :quoteDetails="quoteDetails" :paystack="paystackData"  :coverType="coverType"  v-on:updatePolicy="updatePolicy" />
         <Securitynotification v-if="securityNotification" />
         <div v-show="showPaystack">
           <Paystack
