@@ -210,13 +210,8 @@
                 <div class="flex justify-between gap-6 py-1">
                   <div class="block w-full">
                     <label for="homeitem" class="block font-bold text-black py-2 text-xs lg:text-sm">Gadget Item</label>
-                    <select v-model="gadgetdetails['gadget_name_' + index]"
-                      class="bg-custom border border-custom rounded w-full px-3 py-2.5 text-xs lg:text-md">
-                      <option value="">Select Gadget Type</option>
-                      <option>Laptop</option>
-                      <option>Phone</option>
-                      <option>Tablet</option>
-                    </select>
+                    <input type="text" name="registered_business_address" v-model="gadgetdetails['gadget_config_' + index]"
+                           placeholder="" class="bg-custom border border-custom rounded w-full px-3 py-2 text-xs lg:text-md">
                   </div>
                   <div class="block w-full">
                     <label for="monetaryvalue" class="block font-bold text-black py-2 text-xs lg:text-sm">Monetary Value
@@ -228,37 +223,16 @@
                 </div>
                 <div class="flex justify-between gap-6 py-1">
                   <div class="block w-full">
-                    <label for="frontview" class="block font-bold text-black py-2 text-xs lg:text-sm">Upload front view
-                      <span class="text-red-600 text-xs">*</span></label>
-                    <div class="rounded border border-custom flex">
-                      <input hidden type="file" :id="'frontview' + index"
-                        class="bg-customgreen py-3 border-0 text-white" :ref="'frontview' + index"
-                        @change="frontViewUpload(index)">
-                      <label :for="'frontview' + index"
-                        class="bg-customgreen py-3 px-3 border-0 text-white rounded-l text-xs lg:w-7/12 w-7/12 cursor-pointer">
-                        Choose File
-                      </label>
-                      <input type="text" placeholder="" class="bg-custom w-full custom-outline-none text-xs px-2"
-                        :value="imageUpload['frontview' + index]" readonly />
-                    </div>
-                    <p class="text-red-500 text-xs lg:text-sm" v-if="error['frontview' + index]">{{error['frontview' +
-                      index]}}</p>
+                    <label for="registered_business_address"
+                           class="block font-bold text-black py-2 text-xs lg:text-sm">Serial Number</label>
+                    <input type="text" name="registered_business_address" v-model="gadgetdetails['gadget_serial_' + index]"
+                           placeholder="" class="bg-custom border border-custom rounded w-full px-3 py-2 text-xs lg:text-md">
                   </div>
                   <div class="block w-full">
-                    <label for="backview" class="block font-bold text-black py-2 text-xs lg:text-sm">Upload image of Id
-                      <span class="text-red-600 text-xs">*</span></label>
-                    <div class="rounded border border-custom flex">
-                      <input hidden type="file" :id="'backview' + index" class="bg-customgreen py-3 border-0 text-white"
-                        :ref="'backview' + index" @change="backViewUpload(index)">
-                      <label :for="'backview' + index"
-                        class="bg-customgreen py-3 px-3 border-0 text-white rounded-l text-xs lg:text-xs lg:w-7/12 w-7/12 cursor-pointer">
-                        Choose File
-                      </label>
-                      <input type="text" placeholder="" class="bg-custom w-full custom-outline-none text-xs px-2"
-                        v-model="imageUpload['backview' + index]" readonly />
-                    </div>
-                    <p class="text-red-500 text-xs lg:text-sm" v-if="error['backview' + index]">{{error['backview' +
-                      index]}}</p>
+                    <label for="registered_business_address"
+                           class="block font-bold text-black py-2 text-xs lg:text-sm">Configuration</label>
+                    <input type="text" name="registered_business_address" v-model="gadgetdetails['gadget_config_' + index]"
+                           placeholder="" class="bg-custom border border-custom rounded w-full px-3 py-2 text-xs lg:text-md">
                   </div>
                 </div>
               </div>
@@ -339,16 +313,8 @@ export default {
         utility: '',
         corporateCertificate: '',
         idImage: '',
-        frontview1: '',
-        backview1: '',
-        frontview2: '',
-        backview2: '',
-        frontview3: '',
-        backview3: '',
-        frontview4: '',
-        backview4: '',
-        frontview5: '',
-        backview5: '',
+        serial_number: '',
+        configuration: '',
         excel: '',
       },
       error: {
@@ -399,6 +365,8 @@ export default {
         customer_id_type: '',
         customer_id_number: '',
         idImage: '',
+        serial_number: '',
+        configuration: '',
       };
 
       // Validate each field
@@ -557,53 +525,53 @@ export default {
         this.data.excel = files[0]
       }
     },
-    frontViewUpload(index) {
-      const inputRef = this.$refs['frontview' + index];
-      const files = inputRef[0].files;
-      const maxSizeInBytes = 2 * 1024 * 1024;
-      if (files.length > 0) {
-        this.imageUpload['frontview' + index] = files[0].name
-        if (files[0].size > maxSizeInBytes) {
-          this.imageUpload['frontview' + index] = '';
-          this.error['frontview' + index] = 'File size exceeds 2MB limit.'
-          // console.log("File size exceeds 2MB limit");
-          return;
-        }
-
-        this.error['frontview' + index] = ''
-        const fileReader = new FileReader();
-        const vm = this;
-        fileReader.onload = function (fileLoadedEvent) {
-          vm.gadgetdetails['gadget_front_view_' + index] = fileLoadedEvent.target.result;
-          vm.$nextTick(() => {});
-        };
-        fileReader.readAsDataURL(files[0]);
-      }
-
-    },
-    backViewUpload(index) {
-      const inputRef = this.$refs['backview' + index];
-      const files = inputRef[0].files;
-      const maxSizeInBytes = 2 * 1024 * 1024;
-      if (files.length > 0) {
-        this.imageUpload['backview' + index] = files[0].name;
-        if (files[0].size > maxSizeInBytes) {
-          this.imageUpload['backview' + index] = '';
-          this.error['backview' + index] = 'File size exceeds 2MB limit.'
-          // console.log("File size exceeds 2MB limit");
-          return;
-        }
-
-        this.error['backview' + index] = ''
-        const fileReader = new FileReader();
-        const vm = this;
-        fileReader.onload = function (fileLoadedEvent) {
-          vm.gadgetdetails['gadget_back_view_' + index] = fileLoadedEvent.target.result;
-        };
-        fileReader.readAsDataURL(files[0]);
-      }
-
-    },
+    // frontViewUpload(index) {
+    //   const inputRef = this.$refs['frontview' + index];
+    //   const files = inputRef[0].files;
+    //   const maxSizeInBytes = 2 * 1024 * 1024;
+    //   if (files.length > 0) {
+    //     this.imageUpload['frontview' + index] = files[0].name
+    //     if (files[0].size > maxSizeInBytes) {
+    //       this.imageUpload['frontview' + index] = '';
+    //       this.error['frontview' + index] = 'File size exceeds 2MB limit.'
+    //       // console.log("File size exceeds 2MB limit");
+    //       return;
+    //     }
+    //
+    //     this.error['frontview' + index] = ''
+    //     const fileReader = new FileReader();
+    //     const vm = this;
+    //     fileReader.onload = function (fileLoadedEvent) {
+    //       vm.gadgetdetails['gadget_front_view_' + index] = fileLoadedEvent.target.result;
+    //       vm.$nextTick(() => {});
+    //     };
+    //     fileReader.readAsDataURL(files[0]);
+    //   }
+    //
+    // },
+    // backViewUpload(index) {
+    //   const inputRef = this.$refs['backview' + index];
+    //   const files = inputRef[0].files;
+    //   const maxSizeInBytes = 2 * 1024 * 1024;
+    //   if (files.length > 0) {
+    //     this.imageUpload['backview' + index] = files[0].name;
+    //     if (files[0].size > maxSizeInBytes) {
+    //       this.imageUpload['backview' + index] = '';
+    //       this.error['backview' + index] = 'File size exceeds 2MB limit.'
+    //       // console.log("File size exceeds 2MB limit");
+    //       return;
+    //     }
+    //
+    //     this.error['backview' + index] = ''
+    //     const fileReader = new FileReader();
+    //     const vm = this;
+    //     fileReader.onload = function (fileLoadedEvent) {
+    //       vm.gadgetdetails['gadget_back_view_' + index] = fileLoadedEvent.target.result;
+    //     };
+    //     fileReader.readAsDataURL(files[0]);
+    //   }
+    //
+    // },
     validatePhoneNumber(phoneNumber) {
       this.data.telephone = phoneNumber
       const digitsOnly = phoneNumber.replace(/\D/g, '');
