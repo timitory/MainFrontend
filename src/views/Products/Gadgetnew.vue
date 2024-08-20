@@ -181,8 +181,8 @@ export default {
           {
             gadget_name: '',
             gadget_price: '',
-            gadget_front_view: '',
-            gadget_back_view: '',
+            gadget_serial: '',
+            gadget_config: '',
           }
         ]
       },
@@ -212,24 +212,25 @@ export default {
       }
     },
     buyGadget(data){
-      this.$store.commit('startLoading')
-      axios({url: `${baseURL}/gadget/policy/new`, data: data, method: 'POST',
-        headers: {
-          'Content-Type': this.policyType === 'Individual' ? 'application/json' : 'multipart/form-data'
-        }})
-          .then((res) => {
-            console.log(res.data.data)
-            this.show = false
-            this.authToken = res.data.data.access_token
-            this.user_gadget_id = res.data.data.user_gadget_id
-            this.showDetails = res.data.data
-            this.newUser = res.data.data.is_new_user
-            this.$store.commit('endLoading')
-            this.payNow()
-          })
-          .catch((err) => {
-            this.$store.dispatch('handleError', err)
-          })
+      console.log('buyData:', data)
+      // this.$store.commit('startLoading')
+      // axios({url: `${baseURL}/gadget/policy/new`, data: data, method: 'POST',
+      //   headers: {
+      //     'Content-Type': this.policyType === 'Individual' ? 'application/json' : 'multipart/form-data'
+      //   }})
+      //     .then((res) => {
+      //       console.log(res.data.data)
+      //       this.show = false
+      //       this.authToken = res.data.data.access_token
+      //       this.user_gadget_id = res.data.data.user_gadget_id
+      //       this.showDetails = res.data.data
+      //       this.newUser = res.data.data.is_new_user
+      //       this.$store.commit('endLoading')
+      //       this.payNow()
+      //     })
+      //     .catch((err) => {
+      //       this.$store.dispatch('handleError', err)
+      //     })
     },
     payNow(){
       this.$store.commit('startLoading')

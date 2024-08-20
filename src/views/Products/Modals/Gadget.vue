@@ -210,7 +210,7 @@
                 <div class="flex justify-between gap-6 py-1">
                   <div class="block w-full">
                     <label for="homeitem" class="block font-bold text-black py-2 text-xs lg:text-sm">Gadget Item</label>
-                    <input type="text" name="registered_business_address" v-model="gadgetdetails['gadget_config_' + index]"
+                    <input type="text" name="registered_business_address" v-model="gadgetdetails['gadget_name_' + index]"
                            placeholder="" class="bg-custom border border-custom rounded w-full px-3 py-2 text-xs lg:text-md">
                   </div>
                   <div class="block w-full">
@@ -236,6 +236,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="flex gap-2 items-center py-1" @click="addnew">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                   class="cancel">
@@ -595,8 +596,8 @@ export default {
           if (key.startsWith('gadget_name_')) {
             const index = key.slice('gadget_name_'.length); // Extract the index
             const valueKey = `gadget_price_${index}`; // Form the corresponding value key
-            const frontViewKey = `gadget_front_view_${index}`; // Form the corresponding front view key
-            const backViewKey = `gadget_back_view_${index}`; // Form the corresponding back view key
+            const frontViewKey = `gadget_serial_${index}`; // Form the corresponding front view key
+            const backViewKey = `gadget_config_${index}`; // Form the corresponding back view key
 
             // Check if the value key exists using safer Object.hasOwnProperty method
             if (Object.prototype.hasOwnProperty.call(this.gadgetdetails, valueKey)) {
