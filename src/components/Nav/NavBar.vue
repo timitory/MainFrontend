@@ -22,7 +22,7 @@
                     <router-link to="/careers" class="text-sm text-current hover:text-army pb-3">Careers</router-link>
                 </li>
                 <li>
-                  <a target="_blank" href="https://documenter.getpostman.com/view/20277121/2sA3XQg1qB" class="text-sm text-current hover:text-army">Documentation</a>
+                  <a target="_blank" href="0#" class="text-sm text-current hover:text-army">Documentation</a>
                 </li>
                 <li class="cursor-pointer relative">
                   <a href="mailto: info@paddycover.com" class="text-sm text-current hover:text-army">Speak to Us</a>
@@ -131,9 +131,9 @@
         </nav>
     </div>
 </template>
-  
+
 <script>
-// import tdropdown from 'vue-tailwind/dist/components' 
+// import tdropdown from 'vue-tailwind/dist/components'
 // import LifeIcon from '../../assets/icons/life.svg'
 export default {
     components: {},
@@ -164,7 +164,7 @@ export default {
   },
 }
 </script>
-  
+
 <style scoped>
 .nav-section-2 {
     border: 1px solid #0000000D;
