@@ -22,7 +22,7 @@
                     <router-link to="/careers" class="text-sm text-current hover:text-army pb-3">Careers</router-link>
                 </li>
                 <li>
-                  <a target="_blank" href="0#" class="text-sm text-current hover:text-army">Documentation</a>
+                  <a target="_blank" href="https://documenter.getpostman.com/view/20277121/2s9Y5SXm3D" class="text-sm text-current hover:text-army">Documentation</a>
                 </li>
                 <li class="cursor-pointer relative">
                   <a href="mailto: info@paddycover.com" class="text-sm text-current hover:text-army">Speak to Us</a>
