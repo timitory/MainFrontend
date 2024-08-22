@@ -236,7 +236,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="flex gap-2 items-center py-1" @click="addnew">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                   class="cancel">
@@ -593,12 +592,14 @@ export default {
       if(this.policyType === "Individual") {
         let result = []
         for (let key in this.gadgetdetails) {
+          console.log(key)
           if (key.startsWith('gadget_name_')) {
             const index = key.slice('gadget_name_'.length); // Extract the index
             const valueKey = `gadget_price_${index}`; // Form the corresponding value key
             const frontViewKey = `gadget_serial_${index}`; // Form the corresponding front view key
             const backViewKey = `gadget_config_${index}`; // Form the corresponding back view key
-
+           
+            // gadget_name_1
             // Check if the value key exists using safer Object.hasOwnProperty method
             if (Object.prototype.hasOwnProperty.call(this.gadgetdetails, valueKey)) {
               // Pair the name and value in an object and push it to the result array
@@ -606,9 +607,12 @@ export default {
                 gadget_name: this.gadgetdetails[key],
                 gadget_price: `${this.gadgetdetails[valueKey]}`,
                 gadget_front_view: this.gadgetdetails[frontViewKey],
-                gadget_back_view: this.gadgetdetails[backViewKey]
+                gadget_back_view: this.gadgetdetails[backViewKey],
+              
               });
+              console.log(result)
             }
+            console.log(result)
           }
         }
         this.data.gadget = result

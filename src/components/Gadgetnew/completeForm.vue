@@ -7,27 +7,41 @@
 
                 </div>
                 <div class="mt-4 lg:flex">
-                    <div class="lg:w-full lg:mr-3">
+                    <div class="lg:w-full lg:mr-2">
                         <label class="text-sm font-bold">Title </label>
                         <input :value="this.gadgetdata.title" type="text"
                             @input="(event) => (this.gadgetdata.title = event.target.value)"
                             class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                             placeholder="" required>
                     </div>
-                  <div class="lg:w-full lg:mr-3">
+                    <div class="lg:w-full lg:ml-1 mt-4 lg:mt-0">
+                        <label class="text-sm font-bold">Firstname</label>
+                        <input :value="this.gadgetdata.firstname" type="text"
+                            @input="(event) => (this.gadgetdata.firstname = event.target.value)"
+                            class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                            required>
+                    </div>
+                    <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
+                        <label class="text-sm font-bold">Lastname</label>
+                        <input :value="this.gadgetdata.lastname" type="text"
+                               @input="(event) => (this.gadgetdata.lastname = event.target.value)"
+                               class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                               required>
+                      </div>
+                  <!-- <div class="lg:w-full lg:mr-3">
                     <label class="text-sm font-bold">BVN</label>
                     <input :value="this.gadgetdata.bvn" type="text"
                            @input="(event) => (this.gadgetdata.bvn = event.target.value)"
                            class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                            placeholder="" required>
-                  </div>
-                  <div class="lg:w-full lg:mr-3">
+                  </div> -->
+                  <!-- <div class="lg:w-full lg:mr-3">
                     <label class="text-sm font-bold">Occupation</label>
                     <input :value="this.gadgetdata.occupation" type="text"
                            @input="(event) => (this.gadgetdata.occupation = event.target.value)"
                            class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                           placeholder="" readonly>
-                  </div>
+                           placeholder="">
+                  </div> -->
 <!--                    <div class="lg:w-full lg:ml-3 lg:mr-3">-->
 <!--                        <label class="text-sm font-bold">Full Name</label>-->
 <!--                        <input :value="this.gadgetdata.firstname" type="text"-->
@@ -43,6 +57,26 @@
 <!--                    </div>-->
                 </div>
                 <div class="mt-4 lg:flex">
+                    <div class="lg:w-full lg:mr-2">
+                        <label class="text-sm font-bold">Email Address</label>
+                        <input :value="this.gadgetdata.email" type="email"
+                               @input="(event) => (this.gadgetdata.email = event.target.value)"
+                               class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                               required>
+                      </div>
+                      <div class="lg:w-full lg:ml-1 mt-4 lg:mt-0">
+                        <label for="telephone" class="block font-bold text-black py-2 text-xs lg:text-sm">Phone Number</label>
+                        <input type="tel" name="telephone" :value="this.gadgetdata.telephone" 
+                          @input="(event) =>(this.gadgetdata.telephone = event.target.value)" placeholder="08123456789"
+                          class="bg-custom border border-custom rounded w-full px-4 py-3 text-xs lg:text-md">
+                      </div>
+                      <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
+                        <label class="text-sm font-bold">Date Of Birth</label>
+                        <input :value="this.gadgetdata.dob" type="date"
+                            @input="(event) => (this.gadgetdata.dob = event.target.value)"
+                            class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                            required>
+                    </div>
 <!--                    <div class="lg:w-full lg:ml-3 lg:mr-3">-->
 <!--                        <label class="text-sm font-bold">Email</label>-->
 <!--                        <input :value="this.gadgetdata.email" type="email"-->
@@ -66,6 +100,27 @@
 <!--                    </div>-->
                 </div>
                 <div class="mt-4 lg:flex">
+                    <div class="lg:w-full lg:mr-2">
+                        <label class="text-sm font-bold">Address</label>
+                        <input :value="this.gadgetdata.address" type="text"
+                               @input="(event) => (this.gadgetdata.address = event.target.value)"
+                               class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                               required>
+                      </div>
+                      <div class="lg:w-full lg:ml-1 mt-4 lg:mt-0">
+                        <label class="text-sm font-bold">Nationality</label>
+                        <input :value="this.gadgetdata.nationality" type="text"
+                               @input="(event) => (this.gadgetdata.nationality = event.target.value)"
+                               class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                               required>
+                      </div>
+                      <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
+                        <label class="text-sm font-bold">Occupation</label>
+                        <input :value="this.gadgetdata.occupation" type="text"
+                               @input="(event) => (this.gadgetdata.occupation = event.target.value)"
+                               class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                               placeholder="">
+                      </div>
 <!--                    <div class="lg:w-full lg:mr-3">-->
 <!--                        <label class="text-sm font-bold">Occupation</label>-->
 <!--                        <input :value="this.gadgetdata.occupation" type="text"-->
@@ -73,7 +128,7 @@
 <!--                            class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"-->
 <!--                            placeholder="" readonly>-->
 <!--                    </div>-->
-                    <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
+                    <!-- <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
                         <label class="text-sm font-bold">Business Address</label>
                         <input :value="this.gadgetdata.business_address" type="text"
                             @input="(event) => (this.gadgetdata.business_address = event.target.value)"
@@ -86,17 +141,24 @@
                             @input="(event) => (this.gadgetdata.registered_address = event.target.value)"
                             class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                             required>
-                    </div>
-                  <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
+                    </div> -->
+                  <!-- <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
                     <label class="text-sm font-bold">Source of fund for this transaction</label>
                     <input :value="this.gadgetdata.fund_source" type="text"
                            @input="(event) => (this.gadgetdata.fund_source = event.target.value)"
                            class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                            required>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="mt-4 lg:flex">
-                    <div class="lg:w-full lg:mr-3">
+                    <!-- <div class="lg:w-full lg:mr-3">
+                        <label class="text-sm font-bold">BVN</label>
+                        <input :value="this.gadgetdata.bvn" type="text"
+                               @input="(event) => (this.gadgetdata.bvn = event.target.value)"
+                               class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                               placeholder="" required>
+                      </div> -->
+                    <!-- <div class="lg:w-full lg:mr-3">
                         <label class="text-sm font-bold">Address of dwelling to be insured (if different from
                             business/registered address, above)</label>
                         <input :value="this.gadgetdata.address_of_insured" type="text"
@@ -110,17 +172,87 @@
                             @input="(event) => (this.gadgetdata.start_date = event.target.value)"
                             class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                             required>
-                    </div>
-                  <div class="lg:w-full lg:ml-3">
+                    </div> -->
+                    
+                  <!-- <div class="lg:w-full lg:ml-3">
                     <label class="text-sm font-bold">How much is the expected premium from this transaction</label>
                     <money v-model="price" v-bind="money"
                            class="block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                            required></money>
-                  </div>
+                  </div> -->
                 </div>
+                <div class="mt-4 lg:flex">
+                    <!-- <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
+                        <label class="text-sm font-bold">Date Of Birth</label>
+                        <input :value="this.gadgetdata.dob" type="date"
+                            @input="(event) => (this.gadgetdata.dob = event.target.value)"
+                            class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                            required>
+                    </div> -->
+                    <!-- <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
+                        <label class="text-sm font-bold">Address</label>
+                        <input :value="this.gadgetdata.address" type="text"
+                               @input="(event) => (this.gadgetdata.address = event.target.value)"
+                               class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                               required>
+                      </div> -->
+                      <!-- <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
+                        <label class="text-sm font-bold">Email Address</label>
+                        <input :value="this.gadgetdata.email" type="email"
+                               @input="(event) => (this.gadgetdata.email = event.target.value)"
+                               class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                               required>
+                      </div> -->
+
+                </div>
+                <div class="mt-4 lg:flex">
+                    <!-- <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
+                        <label class="text-sm font-bold">firstname</label>
+                        <input :value="this.gadgetdata.firstname" type="text"
+                            @input="(event) => (this.gadgetdata.firstname = event.target.value)"
+                            class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                            required>
+                    </div>
+                    <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
+                        <label class="text-sm font-bold">Lastname</label>
+                        <input :value="this.gadgetdata.lastname" type="text"
+                               @input="(event) => (this.gadgetdata.lastname = event.target.value)"
+                               class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                               required>
+                      </div> -->
+                      <!-- <div class="lg:w-full lg:ml-3 mt-4 lg:mt-0">
+                        <label class="text-sm font-bold">Nationality</label>
+                        <input :value="this.gadgetdata.nationality" type="text"
+                               @input="(event) => (this.gadgetdata.nationality = event.target.value)"
+                               class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                               required>
+                      </div> -->
+
+                </div>
+                <!-- <div class="block w-full">
+                    <label for="telephone" class="block font-bold text-black py-2 text-xs lg:text-sm">Phone Number</label>
+                    <input type="tel" name="telephone" :value="this.gadgetdata.telephone" 
+                      @input="(event) =>(this.gadgetdata.telephone = event.target.value)" placeholder="08123456789"
+                      class="bg-custom border border-custom rounded w-full px-3 py-2 text-xs lg:text-md">
+                  </div> -->
+                  <div class="block w-full">
+                    <label for="id_image" class="block font-bold text-black py-2 text-xs lg:text-sm">Upload image of Id
+                      <span class="text-red-600 text-xs">*</span></label>
+                    <div class="rounded border border-custom flex">
+                      <input hidden type="file" id="idImage" class="bg-customgreen py-3 border-0 text-white" ref="idImage"
+                        @change="idUpload">
+                      <label for="idImage"
+                        class="bg-customgreen py-3 px-3 border-0 text-white rounded-l text-xs lg:text-xs lg:w-7/12 w-7/12 cursor-pointer">
+                        Choose File
+                      </label>
+                      <input type="text" placeholder="" class="bg-custom w-full custom-outline-none text-xs px-2"
+                        v-model="imageUpload.idImage" readonly />
+                    </div>
+                    <p class="text-red-500 text-xs lg:text-sm" v-if="error.idImage">{{error.idImage}}</p>
+                  </div>
 <!--                <div class="mt-4 lg:flex">-->
-<!--                    <div class="lg:w-full lg:mr-3">-->
-<!--                        <label class="text-sm font-bold">How much is the expected premium from this transaction</label>-->
+<!--                    <div class="lg:w-full lg:mr-3">--,>
+                   <label class="text-sm font-bold">How much is the expected premium from this transaction</label>-->
 <!--                        &lt;!&ndash; <input :value="this.gadgetdata.expected_premium" type="text"-->
 <!--                            @input="(event) => (this.gadgetdata.expected_premium = event.target.value)"-->
 <!--                            class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"-->
@@ -163,7 +295,7 @@
                         </div>
                     </div>
                     <div class="mt-4 lg:flex">
-                        <div class="lg:w-full lg:mr-3">
+                        <!-- <div class="lg:w-full lg:mr-3">
                             <label class="text-sm font-bold">Has any company declined your proposal</label>
                             <select :value="this.gadgetdata.declined_proposal"
                                 @input="(event) => (this.gadgetdata.declined_proposal = event.target.value)"
@@ -184,16 +316,16 @@
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="mt-4 lg:flex">
-                        <div class="lg:w-full lg:mr-3" v-if="this.gadgetdata.declined_proposal === 'Yes'">
+                        <!-- <div class="lg:w-full lg:mr-3" v-if="this.gadgetdata.declined_proposal === 'Yes'">
                             <label class="text-sm font-bold">What is your claim experience</label>
                             <input :value="this.gadgetdata.claim_experience" type="text"
                                 @input="(event) => (this.gadgetdata.claim_experience = event.target.value)"
                                 class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                                 placeholder="" required>
-                        </div>
+                        </div> -->
                         <div class="lg:w-full lg:mr-3" v-if="this.gadgetdata.other_insurer === 'Yes'">
                             <label class="text-sm font-bold">If “YES”, please state with what company</label>
                             <input :value="this.gadgetdata.insurance_company" type="text" @input="(event) =>
@@ -229,20 +361,37 @@
                     <div class="lg:flex">
 
                     </div>
-                    <div class="mt-4 lg:flex" v-for="index in gadgetlist" :key="index">
-                        <div class="lg:w-full lg:mr-3">
-                            <label class="text-sm font-bold">Gadget {{ index }}</label>
-                            <input :value="gadgetdetails['gadget_name_' + index]"
-                                @input="(e) => gadgetdetails['gadget_name_' + index] = e.target.value" type="text"
-                                class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                placeholder="" required>
+                    <div class="mt-4 lg:flex flex-col space-y-5" v-for="index in gadgetlist" :key="index">
+                        <div class="flex">
+                            <div class="lg:w-full lg:mr-3">
+                                <label class="text-sm font-bold">Gadget {{ index }}</label>
+                                <input :value="gadgetdetails['gadget_name_' + index]"
+                                    @input="(e) => gadgetdetails['gadget_name_' + index] = e.target.value" type="text"
+                                    class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                                    placeholder="" required>
+                            </div>
+                            <div class="lg:w-full lg:mr-3">
+                                <label class="text-sm font-bold">Value {{ index }}</label>
+                                <money v-model="gadgetdetails['gadget_value_' + index]" v-bind="money"
+                                    class="block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                                    required></money>
+                            </div>
                         </div>
-                        <div class="lg:w-full lg:mr-3">
-                            <label class="text-sm font-bold">Value {{ index }}</label>
-                            <money v-model="gadgetdetails['gadget_value_' + index]" v-bind="money"
-                                class="block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                required></money>
+                        <div class="flex">
+                            <div class="lg:w-full lg:mr-3">
+                                <label for="registered_business_address"
+                                       class="block font-bold text-black py-2 text-xs lg:text-sm">Serial Number</label>
+                                <input type="text" name="registered_business_address" v-model="gadgetdetails['gadget_serial_' + index]"
+                                       placeholder="" class="bg-custom border border-custom rounded w-full px-3 py-2 text-xs lg:text-md">
+                              </div>
+                              <div class="lg:w-full lg:mr-3">
+                                <label for="registered_business_address"
+                                       class="block font-bold text-black py-2 text-xs lg:text-sm">Configuration</label>
+                                <input type="text" name="registered_business_address" v-model="gadgetdetails['gadget_config_' + index]"
+                                       placeholder="" class="bg-custom border border-custom rounded w-full px-3 py-2 text-xs lg:text-md">
+                              </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -323,7 +472,22 @@ export default {
                 precision: 0,
                 masked: false
             },
-            price: 0
+            price: 0,
+            imageUpload: {
+        utility: '',
+        corporateCertificate: '',
+        idImage: '',
+        serial_number: '',
+        configuration: '',
+        excel: '',
+      },
+      error: {
+        idImage: '',
+        utility: '',
+        corporateCertificate: '',
+        excel: '',
+        name: '',
+      },
         }
     },
     props: [
@@ -340,23 +504,66 @@ export default {
         previous() {
             this.back(this.page)
         },
-        idUpload() {
-            this.idImageName = this.$refs.signature.files[0].name
-            // this.error.signature = false
-            let fileToLoad = this.$refs.signature.files[0];
-            let fileReader = new FileReader();
-            let vm = this.gadgetdata
-            fileReader.onload = function (fileLoadedEvent) {
-                // console.log(fileLoadedEvent.target.result);
-                vm.signature = fileLoadedEvent.target.result; // <--- data: base64
-            }
-            fileReader.readAsDataURL(fileToLoad);
-        },
+        // idUpload() {
+        //     this.idImageName = this.$refs.signature.files[0].name
+        //     // this.error.signature = false
+        //     let fileToLoad = this.$refs.signature.files[0];
+        //     let fileReader = new FileReader();
+        //     let vm = this.gadgetdata
+        //     fileReader.onload = function (fileLoadedEvent) {
+        //         // console.log(fileLoadedEvent.target.result);
+        //         vm.signature = fileLoadedEvent.target.result; // <--- data: base64
+        //     }
+        //     fileReader.readAsDataURL(fileToLoad);
+        // },
         mouseOver() {
             if (this.gadgetdetails.gadget_name === "" && this.gadgetdetails.gadget_value === "") {
                 this.showTooltip = true
             }
         },
+        validateName() {
+      const nameParts = this.data.firstname.trim().split(' ');
+      if (nameParts.length < 2) {
+        this.error.name = 'Please enter both first name and surname.';
+      } else {
+        this.error.name = '';
+      }
+    },
+    idUpload() {
+      const files = this.$refs.idImage.files;
+      const maxSizeInBytes = 2 * 1024 * 1024;
+      if (files.length > 0) {
+        this.imageUpload.idImage = files[0].name;
+        if (files[0].size > maxSizeInBytes) {
+          this.imageUpload.idImage = '';
+          this.error.idImage = 'File size exceeds 2MB limit.'
+          // console.log("File size exceeds 2MB limit");
+          return;
+        }
+
+        this.error.idImage = ''
+        const fileReader = new FileReader();
+        const vm = this;
+        fileReader.onload = function (fileLoadedEvent) {
+          vm.gadgetdata.id_image = fileLoadedEvent.target.result;
+        };
+        fileReader.readAsDataURL(files[0]);
+      }
+
+    },
+        validatePhoneNumber(phoneNumber) {
+      this.data.telephone = phoneNumber
+      const digitsOnly = phoneNumber.replace(/\D/g, '');
+
+      const expectedLength = 11;
+      if (digitsOnly.length === expectedLength){
+        this.data.telephone = phoneNumber
+        this.error.phone = ""
+      }else {
+        this.error.phone = "Invalid Phone Number"
+      }
+      return digitsOnly.length === expectedLength;
+    },
         addnew() {
             this.gadgetlist = this.gadgetlist + 1
         },
@@ -366,13 +573,18 @@ export default {
                 if (key.startsWith('gadget_name_')) {
                     const index = key.slice('gadget_name_'.length); // Extract the index
                     const valueKey = `gadget_value_${index}`; // Form the corresponding value key
+                    const frontViewKey = `gadget_serial_${index}`; // Form the corresponding front view key
+                    const backViewKey = `gadget_config_${index}`; // Form the corresponding back view key
+
 
                     // Check if the value key exists using safer Object.hasOwnProperty method
                     if (Object.prototype.hasOwnProperty.call(this.gadgetdetails, valueKey)) {
                         // Pair the name and value in an object and push it to the result array
                         result.push({
                             gadget_name: this.gadgetdetails[key],
-                            gadget_price: `${this.gadgetdetails[valueKey]}`
+                            gadget_price: `${this.gadgetdetails[valueKey]}`,
+                            gadget_serial: this.gadgetdetails[frontViewKey],
+                            gadget_config:this.gadgetdetails[backViewKey]
                         });
                     }
                 }
@@ -381,7 +593,7 @@ export default {
             this.gadgetdata.gadget = result
             this.gadgetdata.enrollee_id = this.self.user_id
             this.gadgetdata.expected_premium = `${this.price}`
-            console.log(this.gadgetdata);
+            console.log("gadget form" ,this.gadgetdata);
             this.$emit('submitSingle', this.gadgetdata)
         },
     },

@@ -5,7 +5,7 @@
       <hr class="mt-4">
 
       <Gadgetkyc v-if="this.page === 2" :next="this.next"  :back="this.back" :page="this.page" :gadgetdata="this.gadgetdata" :paymentmode="this.paymentmode" />
-      <completeForm v-if="this.page === 3" :next="this.next" :back="this.back" :page="this.page" :gadgetdata="this.gadgetdata" v-on:submitSingle="BuySinglePet"  />
+      <completeForm v-if="this.page === 3" :next="this.next" :back="this.back" :page="this.page" :gadgetdata="this.gadgetdata" v-on:submitSingle="Buysinglegadget"  />
       <div v-show="showPaystack">
         <Paystack ref="paystackbutton"
           class=" hidden mt-6 w-full bg-green-500 text-white py-2 rounded outline-none focus:outline-none"
@@ -43,11 +43,19 @@ export default {
 },
   data() {
     return {
+      // paystackData: {
+      //   public_key: '',
+      //   email: '',
+      //   amount: 0,
+      //   reference: ''
+      // },
       paystackData: {
         public_key: '',
         email: '',
         amount: 0,
-        reference: ''
+        reference: '',
+        subaccount: '',
+        transactionCharge: 0
       },
       paystackChannels: ['card', 'bank', 'mobile_money', 'bank_transfer'],
       showPaystack: false,
@@ -78,12 +86,15 @@ export default {
       this.showMethodModal = false
     },
 
-    BuySinglePet(data) {
+    Buysinglegadget(data) {
       this.$store.commit('startLoading')
       axios({ url: `${baseURL}/gadget/policy/create`, data: data, method: 'POST' })
         .then(res => {
           // console.log(res)
+          this.authToken = res.data.data.access_token
           this.user_gadget_id = res.data.data.user_gadget_id
+          this.showDetails = res.data.data
+          this.newUser = res.data.data.is_new_user
           this.$store.commit('endLoading')
           this.initiatePayment()
 
@@ -103,34 +114,64 @@ export default {
       if (str === 'old') {
         this.showCardsmodal = true
       } else if (str === 'new') {
+        console.log('====================================');
+        console.log('i got here');
+        console.log('====================================');
         this.payNow()
       }
       return
     },
-    payNow() {
+    payNow(){
       this.$store.commit('startLoading')
-      let data = {}
+      let data = {
+        user_gadget_id : this.user_gadget_id,
+        card_id : 0
+      }
+      axios({url: `${baseURL}/gadget/payment/init`, data: data, method: 'POST',
+       })
+          .then(res=>{
+            this.showPaystack = true
+            this.show = false
+            console.log(res.data.data)
 
-        data = {
-        user_gadget_id: this.user_gadget_id,
-        card_id: 0
-        }
+            this.paystackData.public_key = res.data.data.public_key
+            this.paystackData.email = res.data.data.email
+            this.paystackData.amount = res.data.data.amount
+            this.paystackData.reference = res.data.data.reference
+            this.paystackData.subaccount = res.data.data.subaccount
+            this.paystackData.transactionCharge = res.data.data.flatfee
 
-        axios({ url: `${baseURL}/gadget/payment/init`, data: data, method: 'POST' })
-        .then(res => {
-          console.log(res);
-          this.showPaystack = true
-          this.paystackData = res.data.data
-          this.paystackData.channels = this.paystackChannels
-
-          this.$refs.paystackbutton.payWithPaystack(this.paystackData)
-        })
-        .catch(err => {
-          this.$store.dispatch('handleError', err)
-        })
-      
-      
+            console.log(this.paystackData)
+            this.$refs.paystackbutton.payWithPaystack(this.paystackData)
+          })
+          .catch(err=>{
+            this.$store.dispatch('handleError', err)
+          })
     },
+    // payNow() {
+    //   this.$store.commit('startLoading')
+    //   let data = {}
+
+    //     data = {
+    //     user_gadget_id: this.user_gadget_id,
+    //     card_id: 0
+    //     }
+
+    //     axios({ url: `${baseURL}/gadget/payment/init`, data: data, method: 'POST' })
+    //     .then(res => {
+    //       console.log(res);
+    //       this.showPaystack = true
+    //       this.paystackData = res.data.data
+    //       this.paystackData.channels = this.paystackChannels
+
+    //       this.$refs.paystackbutton.payWithPaystack(this.paystackData)
+    //     })
+    //     .catch(err => {
+    //       this.$store.dispatch('handleError', err)
+    //     })
+      
+      
+    // },
     verifyPayment() {
         axios({ url: `${baseURL}/gadget/payment/verify`, data: { 'reference': this.paystackData.reference }, method: 'POST' })
         .then(res => {
