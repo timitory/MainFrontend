@@ -71,11 +71,11 @@
             <div class="flex justify-between gap-6 py-1" v-if='bookingType === "Family"'>
               <div class="block w-full">
                 <label for="dob" class="block font-bold text-black py-2 lg:text-sm text-xs">Number Of People</label>
-                <input type="number" name="dob" placeholder="0" class="bg-custom border border-custom rounded w-full px-3 py-2 lg:text-md text-xs">
+                <input type="number" name="dob" v-model.number="data.no_of_people" placeholder="0" class="bg-custom border border-custom rounded w-full px-3 py-2 lg:text-md text-xs">
               </div>
               <div class="block w-full">
                 <label for="dob" class="block font-bold text-black py-2 lg:text-sm text-xs">Number of Children</label>
-                <input type="number" name="dob" placeholder="0" class="bg-custom border border-custom rounded w-full px-3 py-2 lg:text-md text-xs">
+                <input type="number" name="dob" v-model.number="data.no_of_children" placeholder="0" class="bg-custom border border-custom rounded w-full px-3 py-2 lg:text-md text-xs">
               </div>
             </div>
             <div class="flex flex-col justify-center items-center py-3">

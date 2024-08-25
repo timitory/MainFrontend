@@ -23,7 +23,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 // console.log(url, process.env.NODE_ENV === 'production' ? 'true' : 'false' )
 
 
-let baseURL = 'https://api.paddycover.com/v1'
+let baseURL = 'https://stage.paddycover.com/v1'
 
 
 
