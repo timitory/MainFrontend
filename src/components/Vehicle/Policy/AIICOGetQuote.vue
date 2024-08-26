@@ -248,8 +248,11 @@ export default {
           vehicle_class_id: this.vehicle_class_id,
           vehicle_usage_id: this.vehicle_usage_id,
 
+          vehicle_category_id:this.vehicle_category_id,
 
-          vehicle_value: 0 * 100,
+
+          vehicle_value:this.vehicle_value,
+          // vehicle_value: 0 * 100,
 
           flood_cover: parseInt(this.flood_cover),
           excess_buyback: 1,
