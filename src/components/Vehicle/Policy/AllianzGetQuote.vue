@@ -8,8 +8,8 @@
             <label class="text-sm font-bold">Vehicle Make</label>
             <div class="relative">
               <select v-model="vehicle"
-                class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                required>
+                      class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                      required>
                 <option v-for="make in data.vehicle_make" :key="make.id" :value="make">{{ make.name }}</option>
               </select>
               <p v-if="Object.keys(vehicle).length === 0" class="absolute text-gray-500" style="top: 8px; left: 8px">E.g
@@ -21,8 +21,8 @@
               <div class="relative">
                 <span v-if="vehicle_category_id == 2">
                   <select v-model="payment_frequency_id"
-                    class="block rounded mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                    required>
+                          class="block rounded mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                          required>
                     <!-- <option disabled selected value="">Select Gender</option> -->
                     <option v-for="payment in data.payment_frequency" :key="payment.id" :value="payment.id">
                       {{ payment.name }}</option>
@@ -31,8 +31,8 @@
                 </span>
                 <span v-else>
                   <select v-model="payment_frequency_id"
-                    class="block rounded mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                    required>
+                          class="block rounded mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                          required>
                     <!-- <option disabled selected value="">Select Gender</option> -->
                     <option :value="data.payment_frequency[2].id">{{ data.payment_frequency[2].name }}</option>
                   </select>
@@ -46,8 +46,8 @@
             <label class="text-sm font-bold">Vehicle Model</label>
             <div class="relative">
               <select v-model="vehicle_model_id"
-                class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                required>
+                      class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                      required>
                 <!-- <option disabled selected value="" class="text-opacity-10">Select Model</option> -->
                 <option v-for="model in models" :key="model.id" :value="model.id">{{ model.name }}</option>
               </select>
@@ -57,8 +57,8 @@
             <div class="mt-4" v-if="vehicle_category_id == 2">
               <label class="text-sm font-bold">Car Value (in Naira)</label>
               <money v-model="vehicle_value" v-bind="money"
-                class="block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                required></money>
+                     class="block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                     required></money>
               <!-- <input ref="inputRef" v-model="vehicle_value"  type="text" class="block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent" placeholder="e.g #2,500,000" required> -->
               <p class="text-red-500 text-sm" v-if="error.value">Please enter a valid amount</p>
             </div>
@@ -67,9 +67,9 @@
             <label class="text-sm font-bold">Vehicle Type</label>
             <div class="relative">
               <select v-model="vehicle_class_id"
-                class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                required>
-                <option v-for="type in data.vehicle_class" :key="type.id" :value="type.id">{{ type.name }}</option>
+                      class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                      required>
+                <option v-for="type in data.allianz_vehicle_class" :key="type.id" :value="type.id">{{ type.name }}</option>
               </select>
               <p v-if="vehicle_class_id == ''" class="absolute text-gray-500" style="top: 8px; left: 8px">Select Type</p>
             </div>
@@ -81,8 +81,8 @@
           <label class="text-sm font-bold">Vehicle Usage</label>
           <div class="relative">
             <select v-model="vehicle_usage_id"
-              class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-              required>
+                    class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                    required>
               <option v-for="type in data.vehicle_usage" :key="type.id" :value="type.id" :class=" !(vehicle_category_id === 1 || vehicle_category_id === 2) && type.name === 'Commercial' ?  'hidden' : type.name ">{{ !(vehicle_category_id === 1 || vehicle_category_id === 2) && type.name === 'Commercial' ? null : type.name }}</option>
             </select>
             <p v-if="vehicle_usage_id == ''" class="absolute text-gray-500" style="top: 8px; left: 8px">Select Type</p>
@@ -113,26 +113,26 @@
     <div class="hidden lg:flex justify-between mt-10">
       <button class="block w-full lg:w-auto lg:float-left py-2 rounded focus:outline-none">
         <router-link to="/app/dashboard/buyvehicle/2"
-          class="w-full lg:w-auto text-green-500 lg:float-left px-12 mt-12 block text-center">
+                     class="w-full lg:w-auto text-green-500 lg:float-left px-12 mt-12 block text-center">
           <font-awesome-icon icon="arrow-left" class="mr-8" />
           Back
         </router-link>
       </button>
       <button
-        class="block w-full lg:w-auto lg:float-right bg-green-500 mt-12 text-white px-12 py-2 rounded focus:outline-none">
+          class="block w-full lg:w-auto lg:float-right bg-green-500 mt-12 text-white px-12 py-2 rounded focus:outline-none">
         Get Quote
         <font-awesome-icon icon="arrow-right" class="ml-3" />
       </button>
     </div>
     <div class="block lg:hidden mt-10">
       <button
-        class="block w-full lg:w-auto lg:float-right bg-green-500 mt-12 text-white px-12 py-2 rounded focus:outline-none">
+          class="block w-full lg:w-auto lg:float-right bg-green-500 mt-12 text-white px-12 py-2 rounded focus:outline-none">
         Get Quote
         <font-awesome-icon icon="arrow-right" class="ml-3" />
       </button>
       <button class="block w-full lg:w-auto lg:float-left py-2 rounded focus:outline-none">
         <router-link to="/app/dashboard/buyvehicle/2"
-          class="w-full lg:w-auto text-green-500 lg:float-left px-12 mt-12 block text-center">
+                     class="w-full lg:w-auto text-green-500 lg:float-left px-12 mt-12 block text-center">
           <font-awesome-icon icon="arrow-left" class="mr-8" />
           Back
         </router-link>
@@ -158,6 +158,7 @@ export default {
         precision: 0,
         masked: false
       },
+      allianzVehicleType: [],
       vehicle: {},
       vehicle_make_id: '',
       vehicle_model_id: '',
@@ -228,6 +229,9 @@ export default {
 
 
         if (this.vehicle_category_id == 1) {
+
+
+
           // console.log('calling thirdparty')
           this.$store.commit('saveVehicleQuote', thirdPartyData)
           this.$emit('submitThirdPartyQuote', thirdPartyData)
@@ -239,9 +243,9 @@ export default {
           this.$store.commit('saveVehicleQuote', chiPrimeData)
           this.$emit('submitPrimeQuote', chiPrimeData)
         } else if (this.vehicle_category_id == 4) {
-        this.$store.commit('saveVehicleQuote', chiPrimeData)
-        this.$emit('submitPrimeQuote', chiPrimeData)
-      } else if (this.vehicle_category_id == 5) {
+          this.$store.commit('saveVehicleQuote', chiPrimeData)
+          this.$emit('submitPrimeQuote', chiPrimeData)
+        } else if (this.vehicle_category_id == 5) {
           this.$store.commit('saveVehicleQuote', chiPrimeData)
           this.$emit('submitPrimeQuote', chiPrimeData)
         }
@@ -250,13 +254,13 @@ export default {
     getResources() {
       this.$store.commit('startLoading')
       axios.get(`${baseURL}/vehicle/resources`)
-        .then(res => {
-          this.$store.commit('setChiVehicleResources', res.data.data)
-          this.$store.commit('endLoading')
-        })
-        .catch(err => {
-          this.$store.dispatch('handleError', err)
-        })
+          .then(res => {
+            this.$store.commit('setChiVehicleResources', res.data.data)
+            this.$store.commit('endLoading')
+          })
+          .catch(err => {
+            this.$store.dispatch('handleError', err)
+          })
     }
   },
   watch: {
@@ -305,7 +309,7 @@ export default {
     if (Object.keys(this.data).length == 0) {
       this.getResources()
     }
-
+    // this.getResources()
     console.log((this.vehicle_category_id === 1 || this.vehicle_category_id === 2))
 
   }

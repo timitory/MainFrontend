@@ -27,7 +27,7 @@
                             class="block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                             required>
                     </div>
-                
+
                 </div>
 
                 <div class="mt-4 lg:flex lg:justify-between">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="lg:w-full lg:mr-3">
                         <label class="text-sm font-bold">Date Of Birth</label>
-                        
+
                         <input v-model="quote.dob" type="date" :max="this.today"
                             class="block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                             required>
@@ -140,12 +140,12 @@
         </div>
         <transition name="scale">
             <PreviewQuote v-if="this.showQuote" :close="this.close" :next="this.next" :steps="this.steps"
-                :details="this.quotedetails" />
+                :details="this.quotedetails" type="allianz" />
         </transition>
 
     </div>
 </template>
-  
+
 <script>
 import PreviewQuote from "@/components/Travel/PreviewQuote"
 import { mapState } from 'vuex'
@@ -307,7 +307,7 @@ export default {
     }
 }
 </script>
-  
+
 <style scoped>
 input,
 select,

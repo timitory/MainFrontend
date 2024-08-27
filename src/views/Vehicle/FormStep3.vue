@@ -8,9 +8,11 @@
       <p class="mt-2" v-else-if="vehicle_category_id == 4">ChiPrime Silver Vehicle Cover</p>
       <p class="mt-2" v-else-if="vehicle_category_id == 5">ChiPrime Gold Vehicle Cover</p>
       <hr class="mt-4">
-      
+
       <ChiForm v-on:submitComprehensive="buyComprehensive" v-on:submitThirdParty="buyThirdParty" v-on:submitPrime="buyPrime" v-if="underwriterId === 1"/>
       <AIICOForm v-on:submitComprehensive="buyComprehensive" v-on:submitThirdParty="buyThirdParty" v-else-if="underwriterId === 2"/>
+      <AllianzForm v-on:submitComprehensive="buyComprehensive" v-on:submitThirdParty="buyThirdParty" v-on:submitPrime="buyPrime" v-else-if="underwriterId === 6"/>
+
       <div v-show="showPaystack">
         <Paystack
           ref="paystackbutton"
@@ -44,12 +46,14 @@ import AIICOForm from "@/components/Vehicle/Policy/AIICO"
 import PaymentMethod from "@/components/Vehicle/PaymentMethod"
 import Paystack from "vue-paystack";
 import ReviewModal from "@/components/Vehicle/ReviewModal"
-export default {  
+import AllianzForm from "@/components/Vehicle/Policy/AllianzUpdate.vue";
+export default {
   components: {
+    AllianzForm,
     ChiForm, AIICOForm, PaymentMethod, Paystack, ReviewModal
   },
   data(){
-    return{  
+    return{
       paystackData: {
         public_key: '',
         email: '',
@@ -62,7 +66,7 @@ export default {
       showError : false,
       showTermsModal: false,
       showMethodModal: false,
-      user_vehicle_id: 0,  
+      user_vehicle_id: 0,
       showReviewModal: false,
       managevehicle: 'managevehicle'
     }
@@ -74,8 +78,9 @@ export default {
       // // console.log(page);
       // this.$router.push(`/app/dashboard/managevehicle`)
     },
-    
+
     buyThirdParty(data){
+      console.log('here api')
       this.$store.commit('startLoading')
       axios({url: `${baseURL}/vehicle/thirdparty/create`, data: data, method:'POST' })
       .then(res=>{
@@ -92,7 +97,7 @@ export default {
     },
     buyComprehensive(data){
       // console.log(data)
-      
+
       this.$store.commit('startLoading')
       axios({url: `${baseURL}/vehicle/comprehensive/create`, data: data, method:'POST' })
       .then(res=>{
@@ -108,7 +113,7 @@ export default {
           // console.log(err)
           this.$store.dispatch('handleError', err)
       })
-      
+
     },
     buyPrime(data){
       // console.log("buying prime")
@@ -132,7 +137,7 @@ export default {
       // if(!this.check.length > 0) return this.showError = true
       // if(!this.user.has_card) return this.payNow()
       this.showMethodModal = true
-      
+
     },
     payWithCard(str){
       this.showMethodModal = false
@@ -154,7 +159,7 @@ export default {
         this.showPaystack = true
         this.paystackData = res.data.data
         this.paystackData.channels = this.paystackChannels
-       
+
         this.$refs.paystackbutton.payWithPaystack(this.paystackData)
       })
       .catch(err=>{
@@ -181,7 +186,7 @@ export default {
       this.$store.commit('setError', {status: true, msg: "Payment cancelled"})
     }
   },
-  
+
   computed:{
     ...mapState({
       vehicle_category_id: state => state.vehicle_category_id,

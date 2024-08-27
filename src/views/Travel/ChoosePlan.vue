@@ -5,7 +5,7 @@
         <div class="mt-8 box">
           <label v-for="(item, index) in underwriters" :key="index" class=" border border-gray-300 text-lg border-solid" :class="[item.id !== 2 && item.id !== 6 ? 'opacity-50 hidden' : 'container']">
             <!-- <p v-if="item.id == 1" class="name">Consolidated Hallmark Insurance</p> -->
-            <p v-if="item.id == 6" class="name">Allianz </p>
+            <p v-if="item.id == 6" class="name">Allianz</p>
             <p v-else-if="item.id == 2" class="name">AIICO Insurance</p>
             <!-- <p v-else-if="item.id == 3" class="name">FBN Insurance</p> -->
             <input type="radio" v-model="underwriter" :value="item.id" :disabled="item.id !== 2 && item.id !== 6">
@@ -23,7 +23,7 @@ import axios from 'axios'
 import baseURL from "@/main"
 export default {
   components: {
-    
+
   },
   data(){
     return {
@@ -113,7 +113,7 @@ export default {
 .checkmark:after {
   content: "";
   position: absolute;
-  
+
 }
 
 /* Show the checkmark when checked */
@@ -164,6 +164,6 @@ export default {
   .box{
     max-width: 600px;
   }
- 
+
 }
 </style>

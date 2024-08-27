@@ -3,18 +3,18 @@
     <div class="lg:w-3/4 lg:mx-auto">
       <p class="font-semibold">Choose your preferred Insurance provider?</p>
         <div class="mt-8 box">
-          <label v-for="(item, index) in underwriters" :key="index" class=" border border-gray-300 text-lg border-solid" :class="[item.id !== 1 && item.id !== 2 ? 'opacity-50 hidden' : 'container']">
+          <label v-for="(item, index) in underwriters" :key="index" class=" border border-gray-300 text-lg border-solid" :class="[item.id !== 1 && item.id !== 2 && item.id !== 6 ? 'opacity-50 hidden' : 'container']">
             <p v-if="item.id == 1" class="name">Consolidated Hallmark</p>
             <p v-else-if="item.id == 2" class="name">AIICO Insurance</p>
+            <p v-else-if="item.id == 6" class="name">Allianz Insurance</p>
 <!--            <p v-else-if="item.id == 3" class="name">FBN Insurance</p>-->
             <p v-else-if="item.id == 4" class="name">Royal Exchange Insurance</p>
 <!--            <p v-else-if="item.id == 5" class="name">Sanlam</p>-->
-            <input type="radio" v-model="underwriter" :value="item.id" :disabled="item.id !== 1 && item.id !== 2">
+            <input type="radio" v-model="underwriter" :value="item.id" :disabled="item.id !== 1 && item.id !== 2 && item.id !== 6">
             <!-- <input type="radio" v-model="underwriter" :value="item.id" :disabled="item.id === 4">
             <input type="radio" v-model="underwriter" :value="item.id" :disabled="item.id === 5"> -->
-            
             <span class="checkmark"></span>
-            <span class="tooltiptext text-sm shadow" v-if="item.id !== 1 && item.id !== 2">{{item.name}} is coming soon</span>
+            <span class="tooltiptext text-sm shadow" v-if="item.id !== 1 && item.id !== 6 && item.id !== 2 && item.id !== 6">{{item.name}} is coming soon</span>
             <!-- <span class="tooltiptext text-sm shadow" v-if="item.id === 4">Royal Exchange is coming soon</span> -->
           </label>
         </div>
@@ -28,7 +28,7 @@ import axios from 'axios'
 import baseURL from "@/main"
 export default {
   components: {
-    
+
   },
   data(){
     return {
@@ -50,6 +50,7 @@ export default {
   },
   methods: {
     getUnderwriters(){
+      console.log(this.underwriters)
       axios.get(`${baseURL}/underwriter`)
       .then(res=>{
         this.$store.commit('setUnderwriters', res.data.data)
@@ -60,7 +61,7 @@ export default {
     }
   },
   mounted(){
-    
+    this.getUnderwriters();
   },
   created(){
     if(this.underwriters.length == 0){
@@ -116,7 +117,7 @@ export default {
 .checkmark:after {
   content: "";
   position: absolute;
-  
+
 }
 
 /* Show the checkmark when checked */
@@ -167,6 +168,6 @@ export default {
   .box{
     max-width: 600px;
   }
- 
+
 }
 </style>

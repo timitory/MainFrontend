@@ -2,24 +2,24 @@
   <div class="mt-6 lg:pb-8">
     <div class="lg:w-3/4 lg:mx-auto">
       <p class="font-bold text-lg">Quotation Form</p>
-     
+
       <hr class="mt-4">
       <ul class="mt-8 md:mt-10 md:flex md:gap-10">
         <li>
           <ul class="flex justify-between md:gap-10">
             <li class="item">
               <p>Country Category</p>
-              <p class="mt-4 font-bold">{{quote.result.Result.countryCategory}}</p>
+              <p class="mt-4 font-bold">{{quote.result.currency}}</p>
             </li>
             <li class="item">
               <p>Premium</p>
-              <p class="mt-4 font-bold">{{`₦${ Intl.NumberFormat().format(quote.result.Result.premium)}`}}</p>
+              <p class="mt-4 font-bold">{{quote.result.premium}}</p>
             </li>
           </ul>
         </li>
         <li class="item mt-6 md:mt-0">
           <p>Sum Assured</p>
-          <p class="mt-4 font-bold">{{`${quote.result.Result.currencySymbol}${new Intl.NumberFormat().format(quote.result.Result.sumAssured)}`}}</p>
+          <p class="mt-4 font-bold">{{quote.result.sumAssured}}</p>
         </li>
       </ul>
       <!-- <ul class="mt-6 md:mt-8 md:flex md:gap-10">
@@ -29,7 +29,7 @@
               <p>Currency</p>
               <p class="mt-4 font-bold">{{quote.result.excess}}</p>
             </li>
-            
+
           </ul>
         </li> -->
         <!-- <li class="item mt-6 md:mt-0 ">
@@ -38,13 +38,13 @@
         </li> -->
       <!-- </ul> -->
       <div class="py-8 md:py-12 md:flex md:w-3/4 md:justify-between">
-        
+
       </div>
       <hr>
       <div class="md:flex md:justify-between md:items-end">
         <div>
-         
-          
+
+
         </div>
         <router-link to="/app/dashboard/buytravel/2" >
           <button class="block w-full lg:w-auto lg:float-left bg-gray-500 mt-16 text-white px-12 py-2 rounded focus:outline-none">Back</button>
@@ -119,11 +119,11 @@ export default {
     })
   },
   watch:{
-    
+
   },
   methods:{
     initiatePayment(){
-     
+
       //if(!this.check.length > 0) return this.showError = true
       if(!this.user.has_card) return this.payNow()
       this.showMethodModal = true
@@ -148,12 +148,12 @@ export default {
         dob: details.dob,
       }
 
-  
+
       axios({url: `${baseURL}/travel/policy`, data: data, method: 'POST'})
       .then(res=>{
-       
+
         console.log(res.data.data.user_travel_id)
-        
+
         this.travelId =  res.data.data.user_travel_id
         this.$store.commit('saveTravelId', res.data.data)
       })
@@ -163,12 +163,12 @@ export default {
     },
     payWithCard(str){
       this.showMethodModal = false
-      
+
       if(str === 'old'){
         //var travel_id = this.saveTravelData(this.details)
         this.$router.push('/app/dashboard/buytravel/4')
       }else if(str === 'new'){
-        
+
         this.payNow()
       }
       return
@@ -211,8 +211,8 @@ export default {
     }
   },
   mounted(){
-    this.saveTravelData(this.details)
-    
+    // this.saveTravelData(this.details)
+
   }
 }
 </script>

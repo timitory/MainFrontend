@@ -14,8 +14,25 @@
                   </div>
 
                     <div class="mt-4 ">
-                        <!-- <div class="lg:w-full lg:mr-3"> -->
-                            <div class="">
+                      <ul v-if="this.type === 'aiico'" class="mt-8 md:mt-10 md:flex md:gap-10">
+                        <li>
+                          <ul class="flex justify-between md:gap-10">
+                            <li class="item">
+                              <p>Country Category</p>
+                              <p class="mt-4 font-bold">{{this.details.result.currency}}</p>
+                            </li>
+                            <li class="item">
+                              <p>Premium</p>
+                              <p class="mt-4 font-bold">{{this.details.result.premium}}</p>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="item mt-6 md:mt-0">
+                          <p>Sum Assured</p>
+                          <p class="mt-4 font-bold">{{this.details.result.sumAssured}}</p>
+                        </li>
+                      </ul>
+                      <div v-else class="">
                                 <div class="mt-4 lg:flex lg:justify-between">
                                     <div class="lg:w-full lg:mr-3">
                                         <label class="text-sm font-bold">Country</label>
@@ -59,26 +76,23 @@
                                     </div>
                                 </div> -->
                             </div>
-                        <!-- </div> -->
                     </div>
-                    <div class="pt-6">
+                    <div  class="pt-6">
                         <hr>
                         <div class="mt-6">
-
                             <div class="mt-4">
-
-
                             </div>
-
-
-
                         </div>
                         <div class="lg:ml-3">
                         </div>
-                        <div class="mt-4" >
+                        <div v-if="this.type !== 'aiico'" class="mt-4" >
                             <label class="font-bold">AMOUNT</label>
                             <p>{{ this.details.amount }}</p>
                         </div>
+                      <div v-else class="mt-4" >
+                        <label class="font-bold">AMOUNT</label>
+                        <p>{{this.details.result.premium }}</p>
+                      </div>
 
 
                     </div>
@@ -117,14 +131,14 @@
         </div>
     </div>
 </template>
-  
+
 <script>
 import { directive as onClickaway } from 'vue-clickaway';
 import { mapState } from 'vuex'
 export default {
     components: {
     },
-    props: ['next', 'steps', 'close', 'details'],
+    props: ['next', 'steps', 'close', 'details', 'type'],
     data() {
         return {
 
@@ -145,9 +159,14 @@ export default {
     },
     callnext() {
             // this.$emit('close')
-      this.close()
+      if (this.type == 'aiico'){
+        this.close()
+      } else {
+        this.close()
         this.next(this.steps)
-        }
+      }
+      }
+
     },
     watch: {
     },
@@ -166,7 +185,7 @@ export default {
     }
 }
 </script>
-  
+
 <style scoped>
 .loader {
   position: relative;

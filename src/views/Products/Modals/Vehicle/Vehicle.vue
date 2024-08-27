@@ -430,6 +430,7 @@ export default {
           this.data.payment_frequency_id = 3;
           if (newVal === 'Chi-prime') {
             this.data.vehicle_category_id = ''
+
           } else {
             this.data.vehicle_category_id = newVal === 'Third Party' ? 1 : newVal === 'Comprehensive' ? 2 : 0;
           }
