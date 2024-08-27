@@ -281,7 +281,7 @@ export default {
       if (this.coverType === 'Chi-prime'){
         let chiPrimeArray = [];
 
-        this.vehicle_category.forEach(category => {
+        this.vehicle_category?.forEach(category => {
           if (category.name === "CHI-PRIME") {
             switch (category.slug) {
               case "chi-prime":
