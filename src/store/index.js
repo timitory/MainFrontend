@@ -52,6 +52,10 @@ export default new Vuex.Store({
     virtualAccount: {},
     plans:[],
     planType: false,
+    travelModal: false,
+    travelType: '',
+    gadgetModal: false,
+    gadgetType: '',
   },
   mutations: {
     startLoading(state){
@@ -68,6 +72,18 @@ export default new Vuex.Store({
     },
     setPlansTypes(state, payload){
       state.planType  = payload;
+    },
+    setTravelType(state, payload){
+      state.travelType  = payload;
+    },
+    setTravelModal(state, payload){
+      state.travelModal  = payload;
+    },
+    setGadgetType(state, payload){
+      state.gadgetType  = payload;
+    },
+    setGadgetModal(state, payload){
+      state.gadgetModal  = payload;
     },
     setCoverType(state, payload){
       state.coverType  = payload;
@@ -157,7 +173,7 @@ export default new Vuex.Store({
     saveVehicleQuote(state, payload){
       state.vehicleQuoteInfo = payload
     },
-    
+
     saveTravelDetails(state, payload){
       state.travelDetails = payload
     },
@@ -206,7 +222,7 @@ export default new Vuex.Store({
           commit('setUser', res.data.data)
           //Store the token in localstorage
           const token = res.data.data.token
-          localStorage.setItem('user-token', token) 
+          localStorage.setItem('user-token', token)
            //Set the authorization header for future API calls
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
           resolve(res)
@@ -217,7 +233,7 @@ export default new Vuex.Store({
         })
       })
     },
-    
+
     logoutUser({commit}){
       return new Promise((resolve)=>{
         setTimeout(()=> {

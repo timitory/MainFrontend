@@ -58,7 +58,7 @@
               <p v-if="vehicle_model_id == ''" class="absolute text-gray-500" style="top: 8px; left: 8px">Select Model</p>
             </div>
 
-            
+
             <div class="mt-4" v-if="vehicle_category_id === 2">
               <label class="text-sm font-bold">Car Value (in Naira)</label>
               <money v-model="vehicle_value" v-bind="money"
@@ -251,7 +251,7 @@ export default {
           vehicle_category_id:this.vehicle_category_id,
 
 
-          vehicle_value:this.vehicle_value,
+          vehicle_value:this.vehicle_value * 100,
           // vehicle_value: 0 * 100,
 
           flood_cover: parseInt(this.flood_cover),
