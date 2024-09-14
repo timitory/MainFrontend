@@ -84,7 +84,7 @@ export default {
       this.getChiVehicleResources()
       this.getAiicoVehicleResources()
       this.getHomeResources()
-      // this.getChiHealthResources()
+      this.getChiHealthResources()
     }
   }
 }
