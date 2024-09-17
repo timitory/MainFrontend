@@ -243,7 +243,7 @@ export default {
             let data = {
                 "underwriter_id": this.underwriter_id,
                 "user_id": this.user.user_id,
-                'enrollee_id':this.user.user_id,
+                'enrollee_id':this.user
                 "dob": this.quote.dob,
                 "email": this.user.email,
                 "telephone": this.user.phone,

@@ -115,7 +115,6 @@ export default {
         "nationality": "",
         "address": "",
         "email": "",
-        "telephone":"",
         "occupation": "",
         "customer_id_type": "",
         "customer_id_number": "",

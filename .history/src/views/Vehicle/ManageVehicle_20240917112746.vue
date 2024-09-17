@@ -79,7 +79,7 @@
                   <!-- <option value="claim">Make Claim</option> -->
                   <option value="cert" class="">View  certificate</option>
                   <option value="viewvehicle">Vehicle Details</option>
-                  <!-- <option value="renew">Annual Renewal</option> -->
+                  <option value="renew">Annual Renewal</option>
                   <option value="contact">Contact Admin</option>
                   
                 </select>

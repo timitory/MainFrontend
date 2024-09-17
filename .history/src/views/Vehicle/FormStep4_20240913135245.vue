@@ -168,7 +168,7 @@ export default {
   },
   methods:{
     initiatePayment(){
-       if(!this.check.length > 0) return this.showError = true
+      // if(!this.check.length > 0) return this.showError = true
       // if(!this.user.has_card) return this.payNow()
       // this.showMethodModal = true
       this.$router.push('/app/dashboard/buyvehicle/3')

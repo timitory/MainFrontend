@@ -59,14 +59,14 @@
                 <div class="mt-4 lg:flex">
                     <div class="lg:w-full lg:mr-2">
                         <label class="text-sm font-bold">Email Address</label>
-                        <input :value="this.gadgetdata.email===''?self.email :this.gadgetdata.email" type="email"
+                        <input :value="this.gadgetdata.email" type="email"
                                @input="(event) => (this.gadgetdata.email = event.target.value)"
                                class="rounded block mt-4 bg-blue-100 px-4 py-2 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                                required>
                       </div>
                       <div class="lg:w-full lg:ml-1 mt-4 lg:mt-0">
                         <label for="telephone" class="block font-bold text-black py-2 text-xs lg:text-sm">Phone Number</label>
-                        <input type="tel" name="telephone" :value="this.gadgetdata.telephone ===''?self.phone :this.gadgetdata.telephone" 
+                        <input type="tel" name="telephone" :value="this.gadgetdata.telephone" 
                           @input="(event) =>(this.gadgetdata.telephone = event.target.value)" placeholder="08123456789"
                           class="bg-custom border border-custom rounded w-full px-4 py-3 text-xs lg:text-md">
                       </div>
