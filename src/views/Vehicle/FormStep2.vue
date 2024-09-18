@@ -259,13 +259,20 @@
                   </li>
                   <li class="mt-4 flex items-center">
                     <font-awesome-icon  icon="check" class="text-sm text-gray-300 mr-4"/>
-                    <p>Excess Buyback</p>
+                    <p v-if="plan.id===2"> Flood extension</p>
+                    <p v-if="plan.id===3"> Flood extension</p>
+                    <p v-if="plan.id===4"> Flood extension</p>
+                    <p v-if="plan.id===5"> Flood extension</p>
+                    <p v-if="plan.id===6"> Flood extension</p>
                   </li>
                   <li class="mt-4 flex items-center">
                     <font-awesome-icon  icon="check" class="text-sm text-gray-300 mr-4"/>
-                    <p>
-                      Flood extension
-                    </p>
+                    <p v-if="plan.id===2">Fire Outbreak</p>
+                    <p v-if="plan.id===3">Fire Outbreak</p>
+                    <p v-if="plan.id===4">Fire Outbreak</p>
+                    <p v-if="plan.id===5">Fire Outbreak</p>
+                    <p v-if="plan.id===6">Fire Outbreak</p>
+                    
                   </li>
                   <li class="mt-4 flex items-center">
                     <font-awesome-icon  icon="check" class="text-sm text-gray-300 mr-4"/>
