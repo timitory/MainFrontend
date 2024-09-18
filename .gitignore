@@ -1,5 +1,6 @@
 .DS_Store
 /node_modules
+/.history
 
 
 # local env files
@@ -20,6 +21,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+.history
 
 # Local Netlify folder
 .netlify

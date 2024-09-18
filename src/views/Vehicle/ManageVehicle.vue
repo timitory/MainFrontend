@@ -49,12 +49,12 @@
                 <select class="focus:outline-none p-2 border border-solid border-gray-300 rounded" v-model="action" @change="selectEnrollee(enrollee)">
                   <option value="" selected disabled>Select action</option>
                   <option value="view" class="">View repayment schedule</option>
-                  <option value="claim">Make Claim</option>
+                  <!-- <option value="claim">Make Claim</option> -->
                   <option value="inspection">Vehicle Inspection</option>
                   <option value="cert" class="">View  certificate</option>
                   <option value="viewvehicle">Vehicle Details</option>
                   <option value="stop">Cancel Policy</option>
-                  <option value="renew">Annual Renewal</option>
+                  <!-- <option value="renew">Annual Renewal</option> -->
                   <option value="contact">Contact Admin</option>
                   
                 </select>
@@ -63,12 +63,12 @@
                 <select class="focus:outline-none p-2 border border-solid border-gray-300 rounded" v-model="action" @change="selectEnrollee(enrollee)">
                   <option value="" selected disabled>Select action</option>
                   <option value="view" class="">View repayment schedule</option>
-                  <option value="claim">Make Claim</option>
+                  <!-- <option value="claim">Make Claim</option> -->
                   <option value="inspection">Vehicle Inspection</option>
                   <option value="cert" class="">View  certificate</option>
                   <option value="viewvehicle">Vehicle Details</option>
                   <option value="stop">Cancel Policy</option>
-                  <option value="renew">Annual Renewal</option>
+                  <!-- <option value="renew">Annual Renewal</option> -->
                   <option value="contact">Contact Admin</option>
                 </select>
               </td>
@@ -76,10 +76,10 @@
                 <select class="focus:outline-none p-2 border border-solid border-gray-300 rounded" v-model="action" @change="selectEnrollee(enrollee)">
                   <option value="" selected disabled>Select action</option>
                   <option value="view" class="">View repayment schedule</option>
-                  <option value="claim">Make Claim</option>
+                  <!-- <option value="claim">Make Claim</option> -->
                   <option value="cert" class="">View  certificate</option>
                   <option value="viewvehicle">Vehicle Details</option>
-                  <option value="renew">Annual Renewal</option>
+                  <!-- <option value="renew">Annual Renewal</option> -->
                   <option value="contact">Contact Admin</option>
                   
                 </select>
