@@ -25,7 +25,7 @@
                   <a target="_blank" href="https://documenter.getpostman.com/view/20277121/2s9Y5SXm3D" class="text-sm text-current hover:text-army">Documentation</a>
                 </li>
                 <li class="cursor-pointer relative">
-                  <a href="mailto: info@paddycover.com" class="text-sm text-current hover:text-army">Speak to Us</a>
+                  <a href="mailto: enquiry@paddycover.com" class="text-sm text-current hover:text-army">Speak to Us</a>
 
                 </li>
             </ul>

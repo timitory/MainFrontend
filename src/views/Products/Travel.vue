@@ -48,7 +48,7 @@
                    v-if="showDetails.Bronze">Collapse</p>
                 <p class="text-sm text-army cursor-pointer" @click="showDetails.Bronze = true" v-else>Details</p>
                 <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"
-                        style="background-color: #00A859" @click="show = true; bookingType = 'Individual'">
+                        style="background-color: #00A859" @click="$store.commit('setTravelModal', true); $store.commit('setTravelType', 'Individual')">
                   Buy
                 </button>
 <!--                <p class="text-sm text-army cursor-pointer" >Details</p>-->
@@ -88,7 +88,7 @@
                    v-if="showDetails.Silver">Collapse</p>
                 <p class="text-sm text-army cursor-pointer" @click="showDetails.Silver = true" v-else>Details</p>
                 <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"
-                        style="background-color: #00A859" @click="show = true; bookingType = 'Family'">
+                        style="background-color: #00A859" @click="$store.commit('setTravelModal', true); $store.commit('setTravelType', 'Family')">
                   Buy
                 </button>
 <!--                <p class="text-sm text-army cursor-pointer" >Details</p>-->
@@ -101,8 +101,8 @@
         </div>
       </div>
     </div>
-    <TravelQuote v-if="show" :bookingType="bookingType" v-on:show="show = false" v-on:getQuote="quote"  />
-    <PreviewQuote v-if="previewQuote" :quoteDetails="quoteDetails" v-on:back="previewQuote = false; show=true" v-on:proceed="payNow" />
+    <TravelQuote v-if="travelModal" :bookingType="travelType" v-on:show="$store.commit('setTravelModal', false)" v-on:getQuote="quote"  />
+    <PreviewQuote v-if="previewQuote" :quoteDetails="quoteDetails" v-on:back="previewQuote = false; $store.commit('setTravelModal', true)" v-on:proceed="payNow" />
     <successModal v-if="success" type="Travel" v-on:continue="success = false; updateform = true" />
     <Complete type="Travel" v-if="complete" />
     <UpdateForm v-if="updateform" plans="" :quoteDetails="quoteDetails" v-on:updatePolicy="updatePolicy" />
@@ -139,6 +139,7 @@ import UpdateForm from "@/views/Products/Modals/Travel/UpdateForm.vue";
 import Securitynotification from "@/views/Products/Modals/Securitynotification.vue";
 import ArrowUp from "@/assets/icons/arrowup.vue";
 import Complete from "@/views/Products/Modals/Complete.vue";
+import {mapState} from "vuex";
 export default {
   components: {
     Complete,
@@ -175,6 +176,12 @@ export default {
       securityNotification: false
     }
   },
+  computed: {
+    ...mapState({
+      travelModal: state => state.travelModal,
+      travelType: state => state.travelType
+    }),
+  },
   mounted() {
     console.log('Component mounted!');
     window.addEventListener('scroll', this.handleScroll, true);
@@ -205,7 +212,8 @@ export default {
       await axios({url: `${baseURL}/allianz/travel/landing/quote`,data: data, method: 'POST'})
           .then(res => {
             console.log(res);
-            this.show = false;
+            // this.show = false;
+            this.$store.commit('setTravelModal', false)
             this.previewQuote = true;
             this.quoteDetails = res.data.data
             this.travel_id = res.data.data.user_travel_id

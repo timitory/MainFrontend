@@ -126,7 +126,7 @@
           </div>
           <div v-if="medical_condition == 'true'">
             <label class="text-sm font-bold">Full details of Medical Condition</label>
-            <textarea rows="5" v-model="damaged_parts" required class="input rounded mt-4 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
+            <textarea rows="5" v-model="medical" required class="input rounded mt-4 w-full outline-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"></textarea>
           </div>
         </div>
 
@@ -166,8 +166,25 @@
 
       </form>
     </div>
+    <div v-show="showPaystack">
+      <Paystack
+          ref="paystackbutton"
+          class=" hidden mt-6 w-full bg-green-500 text-white py-2 rounded outline-none focus:outline-none"
+          :amount="paystackData.amount"
+          :email="paystackData.email"
+          :paystackkey="paystackData.public_key"
+          :reference="paystackData.reference"
+          :callback="verifyPayment"
+          :close="closePayment"
+          :channels="payStackChannels"
+      >
+      </Paystack>
+    </div>
     <transition name="scale">
       <TermsModal v-if="showTermsModal" v-on:close="showTermsModal = false"/>
+    </transition>
+    <transition name="scale">
+      <PaymentMethod v-if="showMethodModal" v-on:useCard="payWithCard"/>
     </transition>
     <transition name="scale">
       <PreviewQuote v-if="this.showQuote" :close="this.close" :next="this.next" :steps="this.steps"
@@ -179,14 +196,17 @@
 <script>
 import TermsModal from "@/components/TermsModal"
 import { mapState } from 'vuex'
-
+import Paystack from "vue-paystack";
 import axios from 'axios'
 import baseURL from "@/main"
 import PreviewQuote from "@/components/Travel/PreviewQuote.vue";
+import PaymentMethod from "@/components/Travel/PaymentMethod.vue";
 export default {
   components:{
+    PaymentMethod,
     PreviewQuote,
     TermsModal,
+    Paystack,
   },
   data(){
     return {
@@ -222,9 +242,11 @@ export default {
       passport_number: '',
       medical_condition: '',
       travellers: '',
+      medical: '',
       dapature_date: '',
       return_date: '',
       idImage: '',
+      user_travel_id: '',
       houseItems: [
         {item_name: "", cost: "" , error: false}
       ],
@@ -234,6 +256,7 @@ export default {
         idImage: false,
         terms: false
       },
+      initResponse: {},
       paystackData: {
         public_key: '',
         email: '',
@@ -253,6 +276,11 @@ export default {
     })
   },
   methods: {
+    initiatePayment(){
+      //if(!this.check.length > 0) return this.showError = true
+      if(!this.user.has_card) return this.payNow()
+      this.showMethodModal = true
+    },
     close(){
       this.showQuote = false;
       this.steps = 2
@@ -274,24 +302,13 @@ export default {
       datefields.setAttribute("min", todays);
     },
     validate(){
-      // check if terms checkbox has been ticked
       if(!this.check.length > 0){
         this.error.terms = true
         return
       }
       this.error.terms = false
 
-
-      // var premiumData = {
-      //   underwriter_id: this.underwriter_id,
-      //   enrollee_id: this.user.user_id,
-      //   destination_country_id: this.destination_id,
-      //   start_date: this.dapature_date,
-      //   end_date: this.return_date,
-      //   dob: this.dob,
-      // }
-
-      var travelDetails = {
+      const travelDetails = {
         underwriter_id: this.underwriter_id,
         enrollee_id: this.user.user_id,
         premium_id: this.quotedetails.id,
@@ -303,28 +320,22 @@ export default {
         titleId: this.title_id.toString(),
         passportNumber: this.passport_number,
         sms: this.sms,
-        preMedical: this.medical_condition === "yes",
-        medical: this.medical_condition,
+        preMedical: this.medical_condition === "yes" ?  "true" : "false",
+        medical: this.medical,
         passportUrl: this.idImage
-
       }
-
-
+      this.$store.commit('startLoading')
       axios({url:`${baseURL}/aiico/travel/policy`, data: travelDetails, method: 'POST'})
       .then((res)=>{
         console.log(res.data.data)
-        // this.$store.commit('saveTravelPremium', res.data.data)
-        // this.$store.commit('saveTravelDetails', travelDetails)
-        // this.$router.push('/app/dashboard/buytravel/3')
+        this.user_travel_id = res.data.data.user_travel_id
+        this.initiatePayment()
         this.$store.commit('endLoading')
-
       })
       .catch(err => {
         this.$store.dispatch('handleError', err)
       })
 
-      // No errors, call the register method
-      //this.register()
     },
     register(){
       if(this.billImageName == ''){
@@ -393,11 +404,6 @@ export default {
             this.$store.dispatch('handleError', err)
           })
     },
-
-    closePayment(){
-      this.$store.commit('endLoading')
-      this.$store.commit('setError', {status: true, msg: "Payment cancelled"})
-    },
     getQuote() {
       this.$store.commit('startLoading')
       const data = {
@@ -419,11 +425,69 @@ export default {
           .catch(err => {
             this.$store.dispatch('handleError', err)
           })
+    },
+
+    payWithCard(str){
+      this.showMethodModal = false
+
+      if(str === 'old'){
+        //var travel_id = this.saveTravelData(this.details)
+        this.$router.push('/app/dashboard/buytravel/4')
+      }else if(str === 'new'){
+
+        this.payNow()
+      }
+      return
+    },
+    payNow(){
+      this.$store.commit('startLoading')
+      let data = {
+        user_travel_id : this.user_travel_id,
+        card_id : 0
+      }
+      console.log(data)
+      axios({url: `${baseURL}/travel/payment/init`, data: data, method: 'POST'})
+          .then(res=>{
+            console.log(res.data.data)
+            this.showPaystack = true
+            this.initResponse = res.data.data
+            this.paystackData.public_key = this.initResponse.public_key
+            this.paystackData.email = this.initResponse.email
+            this.paystackData.amount = this.initResponse.amount
+            this.paystackData.reference = this.initResponse.aiico_reference
+            this.paystackData.channels = this.paystackChannels
+            this.$refs.paystackbutton.payWithPaystack(this.paystackData)
+          })
+          .catch(err=>{
+            this.$store.dispatch('handleError', err)
+          })
+    },
+    verifyPayment(){
+      const data = {
+        reference: this.initResponse.reference,
+        amount: this.initResponse.amount.toString(),
+        aiico_reference: this.initResponse.aiico_reference,
+      }
+      axios({url: `${baseURL}/travel/aiico/payment/verify`, data, method: 'POST'})
+          .then(res=>{
+            this.$store.commit('endLoading')
+            this.$store.commit('setSuccess', {status: true, msg: res.data.message})
+            this.showReviewModal = true
+            this.$router.push('/app/dashboard/managetravel')
+          })
+          .catch(err=>{
+            // console.log(err)
+            this.$store.commit('endLoading')
+            this.$store.commit('setError', {status: true, msg: err.response.data.message})
+          })
+    },
+    closePayment(){
+      this.$store.commit('endLoading')
+      this.$store.commit('setError', {status: true, msg: "Payment cancelled"})
     }
 
   },
   mounted(){
-
     var today = new Date();
       var dd = today.getDate();
       var mm = today.getMonth() + 1; //January is 0!

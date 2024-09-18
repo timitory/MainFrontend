@@ -231,6 +231,7 @@
 
 import axios from "axios";
 import baseURL from "@/main";
+import {mapState} from "vuex";
 
 export default {
   // components: {TermsModal},
@@ -285,14 +286,15 @@ export default {
     };
   },
   props: {
-    plans: {
-      type: Array,
-      required: true,
-    },
     data: {
       type: Object,
       required: true,
     }
+  },
+  computed: {
+    ...mapState({
+      plans: state => state.plans,
+    }),
   },
   methods: {
     handlePlanChange(event) {

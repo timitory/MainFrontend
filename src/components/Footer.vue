@@ -4,7 +4,7 @@
     <div class="mt-12 lg:mt-6 lg:flex  lg:justify-between lg:items-center">
       <div>
         <router-link to="/faq" class="text-current text-current text-sm block mt-2 lg:inline lg:mr-6">FAQ</router-link>
-        <a id="speak" href="tel:+2348100578550" class="text-current text-sm block mt-2 lg:inline lg:mr-6">
+        <a id="speak" href="tel:+2349136000847" class="text-current text-sm block mt-2 lg:inline lg:mr-6">
           Speak to Us Now
         </a>
         <router-link to="/about" class="text-current text-sm block mt-2 lg:inline lg:mr-6">About</router-link>
@@ -61,7 +61,7 @@ export default {
 // },
 
 mounted() {
-  
+
   const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
   // return regex.test(navigator.userAgent);
   if (regex.test(navigator.userAgent)) {

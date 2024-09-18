@@ -142,7 +142,7 @@
           </div>
         </div>
       </div>
-      <HealthModal v-if="planType" :plans="plans" v-on:show="$store.commit('setPlansTypes', false)" v-on:Submit="buyHMO" v-on:Term = "showTermsModal = true; show = false"  :data="data"/>
+      <HealthModal v-if="planType" v-on:show="$store.commit('setPlansTypes', false)" v-on:Submit="buyHMO" v-on:Term = "showTermsModal = true; show = false"  :data="data"/>
       <div v-show="showPaystack">
         <Paystack
             ref="paystackbutton"
@@ -248,12 +248,12 @@ export default {
   },
   computed: {
     ...mapState({
-      plans: state => state.plans,
+      // plans: state => state.plans,
       planType: state => state.planType
     }),
   },
   mounted() {
-    this.Category()
+    // this.Category()
     window.addEventListener('scroll', this.handleScroll, true);
   },
   beforeDestroy() {
@@ -390,7 +390,6 @@ export default {
 .arrow1 {
   animation-name: arrow;
   animation-duration: 1s;
-  //animation-delay: 0;
   animation-iteration-count: infinite;
 }
 
@@ -434,8 +433,6 @@ export default {
 
 .centernewshow {
   width: 96%;
-  //left: 50%;
-  //transform: translate(-50%, 0%);
 }
 
 .mobileheight {

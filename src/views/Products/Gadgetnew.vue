@@ -40,7 +40,7 @@
                    v-if="showDetails.Bronze">Collapse</p>
                 <p class="text-sm text-army cursor-pointer" @click="showDetails.Bronze = true" v-else>Details</p>
                 <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"
-                        style="background-color: #00A859" @click="show = true; policyType = 'Individual'">
+                        style="background-color: #00A859" @click="$store.commit('setGadgetModal', true), $store.commit('setGadgetType', 'Individual')">
                   Buy
                 </button>
 <!--                <p class="text-sm text-army cursor-pointer" >Details</p>-->
@@ -72,7 +72,7 @@
                    v-if="showDetails.Silver">Collapse</p>
                 <p class="text-sm text-army cursor-pointer" @click="showDetails.Silver = true" v-else>Details</p>
                 <button class="py-2 px-12 text-white font-bold border-2 border-white rounded"
-                        style="background-color: #00A859" @click="show = true; policyType = 'Corporate'">
+                        style="background-color: #00A859" @click="$store.commit('setGadgetModal', true); $store.commit('setGadgetType', 'Corporate')">
                   Buy
                 </button>
 <!--                <p class="text-sm text-army cursor-pointer" >Details</p>-->
@@ -85,7 +85,7 @@
         </div>
       </div>
       <successModal v-if="success" type="Gadget" v-on:continue="continueProcess" />
-      <GadgetModal v-if="show"  :policyType="policyType" v-on:show="show = false" v-on:submit="buyGadget" :term="term" :data="data" v-on:terms="showTermsModal = true; show = false; term = true"/>
+      <GadgetModal v-if="gadgetModal"  :policyType="gadgetType" v-on:show="$store.commit('setGadgetModal', false);" v-on:submit="buyGadget" :term="term" :data="data" v-on:terms="showTermsModal = true; $store.commit('setGadgetModal', false);; term = true"/>
       <Securitynotification v-if="showSecurity" />
       <Complete type="Gadget" v-if="complete" />
       <div v-show="showPaystack">
@@ -104,7 +104,7 @@
         </Paystack>
       </div>
       <transition name="scale">
-        <TermsModal v-if="showTermsModal" v-on:close="showTermsModal = false; show = true"  />
+        <TermsModal v-if="showTermsModal" v-on:close="showTermsModal = false; $store.commit('setGadgetModal', true);"  />
       </transition>
     </div>
   </section>
@@ -123,6 +123,7 @@ import SuccessModal from "@/views/Products/Modals/Success.vue";
 import Securitynotification from "@/views/Products/Modals/Securitynotification.vue";
 import TermsModal from "@/components/TermsModal.vue";
 import Complete from "@/views/Products/Modals/Complete.vue";
+import {mapState} from "vuex";
 
 export default {
   components: {
@@ -163,8 +164,8 @@ export default {
         nationality: "",
         //dob: "",
         address: "",
-        email: "",                             
-        
+        email: "",
+
         occupation: "",
         customer_id_type: "",
         customer_id_number: "",
@@ -187,6 +188,12 @@ export default {
       },
 
     }
+  },
+  computed: {
+    ...mapState({
+      gadgetModal: state => state.gadgetModal,
+      gadgetType: state => state.gadgetType
+    }),
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll, true);
@@ -219,7 +226,8 @@ export default {
         }})
           .then((res) => {
             console.log(res.data.data)
-            this.show = false
+            // this.show = false
+            this.$store.commit('setGadgetModal', false);
             this.authToken = res.data.data.access_token
             this.user_gadget_id = res.data.data.user_gadget_id
             this.showDetails = res.data.data
@@ -244,7 +252,7 @@ export default {
         }})
           .then(res=>{
             this.showPaystack = true
-            this.show = false
+            this.$store.commit('setGadgetModal', false);
             console.log(res.data.data)
 
             this.paystackData.public_key = res.data.data.public_key
